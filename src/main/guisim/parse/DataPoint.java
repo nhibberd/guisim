@@ -11,6 +11,5 @@ public class DataPoint {
         this.p = p;
         this.i = i;
         this.d = d;
-
     }
 }
