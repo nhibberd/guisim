@@ -1,6 +1,7 @@
 package guisim.parse;
 
 import org.junit.Test;
+import scala.runtime.Int;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +9,7 @@ public class ParseTest {
     Parse parse = new Parse();
     short one = 1;
     short negativeone = -1;
+    short twenty = 20;
 
     @Test
     public void datapoint() {
@@ -18,10 +20,11 @@ public class ParseTest {
     public void parseShort() {
         checkParseShort(one, 0x00, 0x01);
         checkParseShort(negativeone, 0xff, 0xff);
+        checkParseShort(twenty, 0x00, 0x14);
     }
 
     private void checkParseShort(short s, int i, int i1) {
-
+        assertEquals(s, parse.parseShort((byte) i , (byte) i1));
     }
 
     private void checkDatapoint(short degrees, short p, short i, short d, byte[] data) {
