@@ -1,5 +1,6 @@
 package guisim.server;
 
+import guisim.json.Json;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,5 +14,8 @@ public class GuiSimServlet extends HttpServlet {
         resp.setContentType("text/plain");
         PrintWriter writer = resp.getWriter();
         writer.println("You called " + path);
+        Json lol = new Json();
+        writer.println(lol.createJson());
+
     }
 }
