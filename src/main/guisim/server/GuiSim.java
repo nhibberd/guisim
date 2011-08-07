@@ -13,7 +13,11 @@ public class GuiSim {
     private static final Configs c = new DefaultConfigs();
 
     public static void main(String[] args) {
-        Config config = c.servlet("/", "/*", new GuiSimServlet());
+        Config config = c.compound(
+           c.servlet("/guisim", "/*", new GuiSimServlet()),
+           c.path("/", "src/web")
+        )
+                ;
         Foil foil = foils.nu("guisim", 10080, config);
         foil.run();
     }
