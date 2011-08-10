@@ -12,7 +12,7 @@ $(document).ready(function () {
             dataType: 'json',
             data: JSON.stringify(packet),
             complete: function (data) {
-              console.log("response");
+              console.log(data.responseText);
             }
         });
     };
@@ -22,14 +22,16 @@ $(document).ready(function () {
             dataType: 'json',
             data: {},
             success: function (data) {
+              //alert(data.pitch);
               $("#pitch").html(data.pitch);
               $("#roll").html(data.roll);
               $("#yaw").html(data.yaw);
-              setTimeout(function() { poll(); }, 1000);
+              setTimeout(function() { poll(); }, 500);
             }
         });
     };
 
     $("#go").click(send);
+    //test
     poll();
 })

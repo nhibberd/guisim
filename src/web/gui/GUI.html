@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="jquery.js"></script>
+  <script src="json2.js"></script>
+<style>
+
+</style>
+
+<title>Unity Web Player | WebPlayer</title>
+
+		<script type="text/javascript" src="UnityObject.js"></script>
+		<script type="text/javascript">
+		<!--
+		function GetUnity() {
+			if (typeof unityObject != "undefined") {
+				return unityObject.getObjectById("unityPlayer");
+			}
+			return null;
+		}
+		if (typeof unityObject != "undefined") {
+			unityObject.embedUnity("unityPlayer", "WebPlayer.unity3d", 600, 450);
+			
+		}
+		-->
+		</script>
+		<style type="text/css">
+		<!--
+		body {
+			font-family: Helvetica, Verdana, Arial, sans-serif;
+			background-color: white;
+			color: black;
+			text-align: center;
+		}
+		a:link, a:visited {
+			color: #000;
+		}
+		a:active, a:hover {
+			color: #666;
+		}
+		p.header {
+			font-size: small;
+		}
+		p.header span {
+			font-weight: bold;
+		}
+		p.footer {
+			font-size: x-small;
+		}
+		div.content {
+			margin: auto;
+			width: 600px;
+		}
+		div.missing {
+			margin: auto;
+			position: relative;
+			top: 50%;
+			width: 193px;
+		}
+		div.missing a {
+			height: 63px;
+			position: relative;
+			top: -31px;
+		}
+		div.missing img {
+			border-width: 0px;
+		}
+		div#unityPlayer {
+			cursor: default;
+			height: 450px;
+			width: 600px;
+		}
+		-->
+		</style>	
+	</head>
+	
+	<body>
+	
+<div id= "Application" hidden="hidden">
+
+<div id = "Title" name="Title" 
+style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 99%; z-index:100;background-color:rgba(0,0,0,0.3);">
+<center> 3DOF Simulator <center>
+<button id="BackToSim" type="button" onClick="window.location.href='user manual.html'"; style="position:absolute; top:-2.5pt; right:0pt;">User Manual</button>
+</div>
+
+<div id = "InputControls" name="InputControls" 
+	style="position:absolute;top:25px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; right:2%;"> Input Controls </span>
+	<button id="rpyBtn" type="button" onClick=btnRpy(); style="position:absolute; top:-2.5pt; left:0pt;">Roll, Pitch & Yaw</button>
+	<button id="pidBtn" type="button" onClick=btnPid(); style="position:absolute; top:-2.5pt; left:90pt;">P-I-D</button>
+	</div>
+<div id="rpyWindow">
+
+	<div id = "RollWindowTitle" name="RollTitle" 
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Roll </span>
+	</div>
+
+	<div id = "RollWindow" name="Roll" 
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+
+	<span style ="position:absolute;  top:20pt; left:10%;"> Roll Angle </span>
+	<input type="text" size="2" id='rA'; style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
+	</div>
+
+	<div id = "PitchTitle" name="PitchTitle" 
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Pitch </span>
+	</div>
+
+	<div id = "PitchWindow" name="Pitch" 
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+
+	<span style ="position:absolute; top:20pt; left:10%;"> Pitch Angle </span>
+	<input type="text" size="2" id='pA';  style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
+	</div>
+
+	<div id = "YawTitle" name="YawTitle" 
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
+	</div>
+
+	<div id = "YawWindow" name="Yaw" 
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	
+	<span style ="position:absolute; top:20pt; left:10%;"> Yaw Angle </span>
+	<input type="text" size="2" id='yA';  style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
+	</div>
+</div>
+
+<div id="pidWindow" hidden="hidden">
+    <div id = "Div1" name="RollTitle" 
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Roll </span>
+	</div>
+
+	<div id = "Div2" name="Roll" 
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
+
+	</div>
+
+	<div id = "Div3" name="PitchTitle" 
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Pitch </span>
+	</div>
+
+	<div id = "Div4" name="Pitch" 
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
+
+	</div>
+
+	<div id = "Div5" name="YawTitle" 
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
+	</div>
+
+	<div id = "Div6" name="Yaw" 
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
+	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
+	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
+
+	</div>
+</div>
+
+<div id = "OutputControls" name="OutputControls" 
+style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 71%; z-index:100;background-color:rgba(0,0,0,0.3);">
+<button id="rpyBtn" type="button" onClick=btnVis(); style="position:absolute; top:-2.5pt; left:0pt;">Visualisations</button>
+<button id="pidBtn" type="button" onClick=btnTxt(); style="position:absolute; top:-2.5pt; left:87pt;">Text Output</button>
+<span style ="position:absolute; top:0pt; left:40%;"> Output Controls </span>
+</div>
+
+<div id="visWindow" name="visWindow">
+
+<div id = "Sim" name="Sim" 
+	style="position:absolute;top:50px; left: 45%;border: 2px solid #333333; -moz-border-radius : 10px; height: 460px; width: 600px; z-index:100;background-color:rgba(0,0,0,0.3);">
+			<div class="content">
+				<div id="unityPlayer">
+					<div class="missing" >
+						<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+							<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+						</a>
+					</div>
+				</div>
+			</div>
+	</div>
+
+
+	<div id="rollPitchPanel" 
+      style="position:absolute;top:55px; left: 28%;border: 2px solid #333333; -moz-border-radius : 10px; height: 160px; width: 160px; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<svg id="gNode" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	</div>
+
+	<div id="yawPanel" 
+      style="position:absolute; top:225px; left:28%; border:2px solid #333333; -moz-border-radius : 10px; height: 160px; width: 160px; z-index:100;background-color:rgba(0,0,0,0.3);">
+	  
+	<!-- this is just for looks at the moment, need to change later to make moving pin-->
+	<!--<img style="background:url(yawGyro.png)" src="yawPin.png" alt="" width="100%" height="100%"/>-->
+	<!--This yaw panel is just an image on image at the moment-->
+
+	<svg id="yawGyro" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	</svg>
+	</div>
+
+</div>
+
+<div id="txtWindow" name="txtWindow" hidden="hidden">
+
+	<div id = "txt" name="txt" style="position:absolute;top:50px; left: 28%;border: 2px solid #333333; -moz-border-radius : 10px; height: 90%; width: 71%; z-index:100;background-color:rgba(0,0,0,0.3);">
+
+	<textarea id="console" name="console" cols="70" rows="27">
+	
+	</textarea><br>
+
+	</div>
+
+</div>
+
+<div id = "Sim" name="Sim" 
+style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+<div id="go"> <button type="button" style="position:absolute;top:25%; left: 5%;" >SEND ANGLES</button> </div>
+</div>
+
+</div>
+
+
+	<script>
+    $(document).ready(function () {
+	$("#go").click(send);
+	/*
+	Create Login Window
+	*/
+
+	var Modal = document.createElement("div");
+	Modal.style.height = document.height + "px";
+	Modal.style.width =  document.width + "px";
+	Modal.style.backgroundColor = "grey";
+	Modal.style.opacity = "0.5";
+	document.body.appendChild(Modal);
+
+	function CheckSubmission() {
+		var u = document.getElementById("UsernameInput");
+		var p = document.getElementById("PasswordInput");
+
+		if(u.value == "admin" && p.value =="3dof") {
+			Modal.hidden = "hidden";
+			document.getElementById("Application").hidden = "";
+		}
+	}
+
+	function CreateLoginWindow() {
+		var LoginWindow = document.createElement("div");
+		LoginWindow.style.borderStyle = "solid";
+		LoginWindow.style.borderWidth = "5px";
+		LoginWindow.style.height = "140px";
+		LoginWindow.style.width = "320px";
+		LoginWindow.style.position = "Absolute"
+		LoginWindow.style.backgroundColor = "white";
+		Modal.appendChild(LoginWindow);
+		LoginWindow.style.top =  "50%";
+		LoginWindow.style.left =  "50%";
+		LoginWindow.style.marginTop = -140/2 + "px";
+		LoginWindow.style.marginLeft = -320/2 + "px";
+
+		//Create UserName
+		var UserName = document.createElement("div");
+		var UserNameText = document.createTextNode("User Name");
+		
+		var UserNameInput = document.createElement('input');
+		UserNameInput.id = "UsernameInput";
+                UserNameInput.setAttribute("size", "40");
+                UserNameInput.value = "";
+
+                UserName.appendChild(UserNameText);
+                UserName.appendChild(UserNameInput);
+
+		//Create Password
+		var Password = document.createElement("div");
+		var PasswordText = document.createTextNode("Password");
+		
+		var PasswordInput = document.createElement('input');
+		PasswordInput.id = "PasswordInput";
+                PasswordInput.setAttribute("size", "40");
+                PasswordInput.value = "";
+                PasswordInput.type = "password";
+
+                Password.style.margin = "10px 0px 0px 0px";
+
+                Password.appendChild(PasswordText);
+                Password.appendChild(PasswordInput);
+
+		//Submit Button
+		var SubmitButton = document.createElement("button");
+		SubmitButton.type = "button";
+		SubmitButton.style.width = "100px";
+		SubmitButton.style.margin = "10px 0px 0px 0px";
+		SubmitButton.innerHTML = "Login";
+		//SubmitButton.style.position = "absolute";
+		SubmitButton.style.left = "50%";
+               // SubmitButton.onClick= "CheckSubmission()";
+               // SubmitButton.addEventListener("onmouseup", "CheckSubmission()");
+                SubmitButton.addEventListener('mousedown', Create(SubmitButton, CheckSubmission), false);
+
+                LoginWindow.appendChild(UserName);
+                LoginWindow.appendChild(Password);
+                LoginWindow.appendChild(SubmitButton);
+		
+		//Create Password
+	}
+
+	CreateLoginWindow();
+
+	//Script to switch tabs...
+
+	function Create(obj, func) {
+	    var f, target, func;
+
+	    f = function () {
+		target = arguments.callee.target;
+		func = arguments.callee.func;
+		return func.apply(target, arguments);
+	    };
+
+	    f.target = obj;
+	    f.func = func;
+	    return f;
+
+	}
+
+	function btnRpy() {
+
+	    document.getElementById("pidWindow").hidden = "hidden";
+	    document.getElementById("rpyWindow").hidden = "";
+
+	}
+
+	function btnPid() {
+
+	    document.getElementById("rpyWindow").hidden = "hidden";
+	    document.getElementById("pidWindow").hidden = "";
+	   
+	}
+
+	function btnVis() {
+
+	    document.getElementById("txtWindow").hidden = "hidden";
+	    document.getElementById("visWindow").hidden = "";
+
+	}
+
+	function btnTxt() {
+
+	    document.getElementById("visWindow").hidden = "hidden";
+	    document.getElementById("txtWindow").hidden = "";
+	   
+	}
+	
+	//Use this function to add text to the console output window
+	function addConsoleText(string) {
+		var console = document.getElementById("console");
+		console.value += "\n " + string;
+	}
+
+	//Script to Send Angles to the Scene...
+
+	var send = function (e) {
+
+		
+        e.preventDefault();
+		
+        var packet = {
+            pitch:  $("#pA input").val(),
+            roll:  $("#rA input").val(),
+            yaw: $("#yA input").val()
+        }
+        $.ajax({
+            type: "POST",
+            url: "/guisim/",
+            dataType: 'json',
+            data: JSON.stringify(packet),
+            complete: function (data) {
+              console.log(data.responseText);
+            }
+        });
+    };
+
+/*
+		var unity = GetUnity();
+		unity.SendMessage("MyObject", "gRoll", r);
+		unity.SendMessage("MyObject", "gPitch", p);
+		unity.SendMessage("MyObject", "gYaw", y);
+		console.log(r + '____' + p + '_____' + y);
+	*/
+
+
+
+/*
+BIT OF BOTH
+*/
+    var f = 6;
+    var svgNode = document.getElementById('gNode');
+    var rT = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rT.setAttribute("x",-40);
+    rT.setAttribute("y",-20);
+    rT.setAttribute("height",100);
+    rT.setAttribute("width",240);
+    rT.setAttribute("fill", 'blue');
+
+    var rB = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rB.setAttribute("x",-40);
+    rB.setAttribute("y",80);
+    rB.setAttribute("height",100);
+    rB.setAttribute("width",240);
+    rB.setAttribute("fill", 'brown');
+    
+    svgNode.appendChild(rB);
+    svgNode.appendChild(rT);
+    
+    var xDir = true;
+    var yDir = true;
+    var x = 0;
+    var y = 0;
+
+/*Yaw Panel*/    
+    var svgYawNode = document.getElementById('yawGyro');
+    var yawBack = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
+    yawBack.setAttribute("height",160);
+    yawBack.setAttribute("width",260);
+    yawBack.setAttribute("fill", "black");
+
+    var yawCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');  
+    yawCircle.setAttribute("cx", "80");
+    yawCircle.setAttribute("cy", "80");
+    yawCircle.setAttribute("r", "80");
+    yawCircle.setAttribute("fill", "white");
+
+    var pin = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
+    pin.setAttribute("x",80);
+    pin.setAttribute("y",0);
+    pin.setAttribute("height",80);
+    pin.setAttribute("width",1);
+    pin.setAttribute("fill", "black");
+
+    svgYawNode.appendChild(yawBack);
+    svgYawNode.appendChild(yawCircle);
+    svgYawNode.appendChild(pin);
+ 
+    setInterval ( "yaw()", 50 );
+
+//code for the yaw pin
+function yaw() {
+    
+    pin.setAttribute("transform", "rotate(120,80,80)");
+
+}
+ 
+setInterval ( "doSomething()", 50 );
+
+    function doSomething() {
+    
+    if(xDir) { x++ }
+    else { x-- }
+
+    if(yDir) { y++ }
+    else { y-- }
+
+    if(x>4) { xDir=false; }
+    if(x<-4) { xDir = true; }
+
+    if(y>4) { yDir = false; }
+    if(y<-4) { yDir = true; }
+
+    //Translate UP and DOWN
+    rT.setAttribute("transform", "translate("+ 0 +" "+x+")rotate("+ x +" "+80+" "+80+")");
+    rB.setAttribute("transform", "translate("+ 0 +" "+y+") rotate("+ y +" "+80+" "+80+")");
+
+
+
+          }
+
+}    )
+
+
+
+	</script>
+
+	</body>
+</html>

@@ -1,11 +1,8 @@
-package guisim.server;
+package guisim.testdata;
 
 import guisim.json.Fred;
 
-import javax.xml.crypto.Data;
-import java.util.Random;
-
-public class GuiSimService {
+public class GuiSimTestService {
     Fred fred = new Fred();
 
     public Fred poll() {
