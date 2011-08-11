@@ -237,15 +237,13 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 
 <div id = "Sim" name="Sim" 
 style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:27%; z-index:100;background-color:rgba(0,0,0,0.3);">
-<div id="go"> <button type="button" style="position:absolute;top:25%; left: 5%;" >SEND ANGLES</button> </div>
+<button type="button" onClick="SendAngles()" style="position:absolute;top:25%; left: 5%;" >SEND ANGLES</button>
 </div>
 
 </div>
 
 
 	<script>
-    $(document).ready(function () {
-	$("#go").click(send);
 	/*
 	Create Login Window
 	*/
@@ -382,15 +380,14 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
 
 	//Script to Send Angles to the Scene...
 
-	var send = function (e) {
-
-		
-        e.preventDefault();
+	function SendAngles(e) {
+        //console.log(e);
+        //e.preventDefault();
 		
         var packet = {
-            pitch:  $("#pA input").val(),
-            roll:  $("#rA input").val(),
-            yaw: $("#yA input").val()
+            pitch:  parseInt(document.getElementById("pA").value,10),
+            roll:  parseInt(document.getElementById("rA").value,10),
+            yaw: parseInt(document.getElementById("yA").value,10)
         }
         $.ajax({
             type: "POST",
@@ -398,10 +395,29 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
             dataType: 'json',
             data: JSON.stringify(packet),
             complete: function (data) {
-              console.log(data.responseText);
+              console.log("Sent -> " + packet.pitch + "__" + packet.roll + "___" + packet.yaw);
             }
         });
     };
+
+    function UpdateSimulation() {
+         var unity = GetUnity();
+    if(unity) {
+            $.ajax({
+                url: "/guisim/",
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                  console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);
+                  unity.SendMessage("MyObject", "gRoll", data.roll);
+                  unity.SendMessage("MyObject", "gPitch", data.pitch);
+                  unity.SendMessage("MyObject", "gYaw", data.yaw);
+                }
+            });
+    }
+    };
+
+    setInterval(function() { UpdateSimulation(); }, 1000);
 
 /*
 		var unity = GetUnity();
@@ -496,8 +512,6 @@ setInterval ( "doSomething()", 50 );
 
 
           }
-
-}    )
 
 
 
