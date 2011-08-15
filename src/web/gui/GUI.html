@@ -410,8 +410,8 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
                 success: function (data) {
                   console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);
                   unity.SendMessage("MyObject", "gRoll", data.roll);
-                  unity.SendMessage("MyObject", "gPitch", data.pitch);
-                  unity.SendMessage("MyObject", "gYaw", data.yaw);
+                  unity.SendMessage("MyObject", "gPitch", data.yaw);
+                  unity.SendMessage("MyObject", "gYaw", data.pitch);
                 }
             });
     }
