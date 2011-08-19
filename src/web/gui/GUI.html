@@ -9,7 +9,6 @@
 
 <title>Unity Web Player | WebPlayer</title>
 
-
 		<script type="text/javascript" src="UnityObject.js"></script>
 		<script type="text/javascript">
 		<!--
@@ -81,7 +80,7 @@
 
 <div id = "Title" name="Title" 
 style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 99%; z-index:100;background-color:rgba(0,0,0,0.3);">
-<center> 3DOF Simulator <center>
+<center><font size="+2"> 3DOF Simulator </font><center>
 <button id="BackToSim" type="button" onClick="window.location.href='user manual.html'"; style="position:absolute; top:-2.5pt; right:0pt;">User Manual</button>
 </div>
 
@@ -211,13 +210,9 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 	<svg id="gNode" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</div>
 
+	
 	<div id="yawPanel" 
       style="position:absolute; top:225px; left:28%; border:2px solid #333333; -moz-border-radius : 10px; height: 160px; width: 160px; z-index:100;background-color:rgba(0,0,0,0.3);">
-	  
-	<!-- this is just for looks at the moment, need to change later to make moving pin-->
-	<!--<img style="background:url(yawGyro.png)" src="yawPin.png" alt="" width="100%" height="100%"/>-->
-	<!--This yaw panel is just an image on image at the moment-->
-
 	<svg id="yawGyro" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</svg>
 	</div>
@@ -238,13 +233,14 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 
 <div id = "Sim" name="Sim" 
 style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:27%; z-index:100;background-color:rgba(0,0,0,0.3);">
-<button type="button" onClick="SendAngles()" style="position:absolute;top:25%; left: 5%;" >SEND ANGLES</button>
+<button type="button" style="position:absolute;top:25%; left: 5%;" onClick=SendAngles();>SEND ANGLES</button>
 </div>
 
 </div>
 
 
 	<script>
+
 	/*
 	Create Login Window
 	*/
@@ -260,9 +256,14 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
 		var u = document.getElementById("UsernameInput");
 		var p = document.getElementById("PasswordInput");
 
-		if(u.value == "admin" && p.value =="3dof") {
+		//if(u.value == "admin" && p.value =="3dof") {
+
+		if(u.value == "" && p.value =="") { //comment this out later
+
 			Modal.hidden = "hidden";
 			document.getElementById("Application").hidden = "";
+		}else{
+			alert('Incorrect username or password because I changed the username and password to nothing. Just press Login');
 		}
 	}
 
@@ -379,7 +380,8 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
 		console.value += "\n " + string;
 	}
 
-	//Script to Send Angles to the Scene...
+
+//Script to Send Angles to the Scene...
 
 	function SendAngles(e) {
         //console.log(e);
@@ -411,8 +413,8 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
                 success: function (data) {
                   console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);
                   unity.SendMessage("MyObject", "gRoll", data.roll);
-                  unity.SendMessage("MyObject", "gPitch", data.yaw);
-                  unity.SendMessage("MyObject", "gYaw", data.pitch);
+                  unity.SendMessage("MyObject", "gPitch", data.pitch);
+                  unity.SendMessage("MyObject", "gYaw", data.yaw);
                 }
             });
     }
@@ -420,20 +422,12 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
 
     setInterval(function() { UpdateSimulation(); }, 1000);
 
-/*
-		var unity = GetUnity();
-		unity.SendMessage("MyObject", "gRoll", r);
-		unity.SendMessage("MyObject", "gPitch", p);
-		unity.SendMessage("MyObject", "gYaw", y);
-		console.log(r + '____' + p + '_____' + y);
-	*/
-
 
 
 /*
 BIT OF BOTH
 */
-    var f = 6;
+
     var svgNode = document.getElementById('gNode');
     var rT = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rT.setAttribute("x",-40);
@@ -457,39 +451,6 @@ BIT OF BOTH
     var x = 0;
     var y = 0;
 
-/*Yaw Panel*/    
-    var svgYawNode = document.getElementById('yawGyro');
-    var yawBack = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
-    yawBack.setAttribute("height",160);
-    yawBack.setAttribute("width",260);
-    yawBack.setAttribute("fill", "black");
-
-    var yawCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');  
-    yawCircle.setAttribute("cx", "80");
-    yawCircle.setAttribute("cy", "80");
-    yawCircle.setAttribute("r", "80");
-    yawCircle.setAttribute("fill", "white");
-
-    var pin = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
-    pin.setAttribute("x",80);
-    pin.setAttribute("y",0);
-    pin.setAttribute("height",80);
-    pin.setAttribute("width",1);
-    pin.setAttribute("fill", "black");
-
-    svgYawNode.appendChild(yawBack);
-    svgYawNode.appendChild(yawCircle);
-    svgYawNode.appendChild(pin);
- 
-    setInterval ( "yaw()", 50 );
-
-//code for the yaw pin
-function yaw() {
-    
-    pin.setAttribute("transform", "rotate(120,80,80)");
-
-}
- 
 setInterval ( "doSomething()", 50 );
 
     function doSomething() {
@@ -510,11 +471,81 @@ setInterval ( "doSomething()", 50 );
     rT.setAttribute("transform", "translate("+ 0 +" "+x+")rotate("+ x +" "+80+" "+80+")");
     rB.setAttribute("transform", "translate("+ 0 +" "+y+") rotate("+ y +" "+80+" "+80+")");
 
+}
+
+/*Yaw Panel*/    
+
+    var svgYawNode = document.getElementById('yawGyro');
+    var yawBack = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
+    yawBack.setAttribute("height",160);
+    yawBack.setAttribute("width",160);
+    yawBack.setAttribute("fill", "black");
+
+    var yawCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');  
+    yawCircle.setAttribute("cx", "80");
+    yawCircle.setAttribute("cy", "80");
+    yawCircle.setAttribute("r", "80");
+    yawCircle.setAttribute("fill", "white");
+
+    var pin = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
+    pin.setAttribute("x",80);
+    pin.setAttribute("y",0);
+    pin.setAttribute("height",80);
+    pin.setAttribute("width",1);
+    pin.setAttribute("fill", "red");
+	
+
+    svgYawNode.appendChild(yawBack);
+    svgYawNode.appendChild(yawCircle);
+    svgYawNode.appendChild(pin);
+
+//yaw markings for each quarter
+    for(var i = 0; i <= 360; i += 90){
+	var longerMark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
+	longerMark.setAttribute("x",80);
+    	longerMark.setAttribute("y",0);
+    	longerMark.setAttribute("height",10);
+    	longerMark.setAttribute("width",1);
+    	longerMark.setAttribute("fill", "black");
+
+        svgYawNode.appendChild(longerMark);
+
+        longerMark.setAttribute("transform", "rotate("+ i +" "+80+" "+80+")");
+    }
+
+//yaw markings for each 10 degree intervals
+    for(var i = 0; i <= 360; i += 10){
+	var mark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');  
+	mark.setAttribute("x",80);
+   	mark.setAttribute("y",0);
+    	mark.setAttribute("height",5);
+    	mark.setAttribute("width",1);
+    	mark.setAttribute("fill", "black");
+
+	svgYawNode.appendChild(mark);
+
+        mark.setAttribute("transform", "rotate("+ i +" "+80+" "+80+")");
+    }
+
+    var yawPivot = true;
+    var yawDegreeMoved = 0;
+    var recievedYaw = 180;//yaw degree returned from JSON can be +/- 360 
+	
+setInterval ("yaw()", 20);
+
+//code for the yaw pin
+function yaw() {
+
+    if(yawPivot){yawDegreeMoved++;}
+    else{yawDegreeMoved--;}
+
+    if(yawDegreeMoved == recievedYaw){yawPivot = false;}
+    if(yawDegreeMoved == -recievedYaw){yawPivot = true;}
 
 
-          }
+    pin.setAttribute("transform", "rotate("+ yawDegreeMoved +" "+80+" "+80+")");
 
-
+}
 
 	</script>
 
