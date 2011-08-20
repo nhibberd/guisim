@@ -101,7 +101,7 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	<div id = "RollWindow" name="Roll"
 	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
-	<span style ="position:absolute;  top:20pt; left:10%;"> Roll Angle </span>
+	<span style ="position:absolute;  top:20pt; left:10%;"> Roll Angle(&deg) </span>
 	<input type="text" size="2" id='rA'; style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
 	</div>
 
@@ -113,7 +113,7 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	<div id = "PitchWindow" name="Pitch"
 	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
-	<span style ="position:absolute; top:20pt; left:10%;"> Pitch Angle </span>
+	<span style ="position:absolute; top:20pt; left:10%;"> Pitch Angle(&deg) </span>
 	<input type="text" size="2" id='pA';  style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
 	</div>
 
@@ -125,7 +125,7 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	<div id = "YawWindow" name="Yaw"
 	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
-	<span style ="position:absolute; top:20pt; left:10%;"> Yaw Angle </span>
+	<span style ="position:absolute; top:20pt; left:10%;"> Yaw Angle(&deg) </span>
 	<input type="text" size="2" id='yA';  style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
 	</div>
 </div>
@@ -139,11 +139,11 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	<div id = "Div2" name="Roll"
 	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
+	<input id= "RollP" type="text" size="2"  style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
+	<input id= "RollI" type="text" size="2"  style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
+	<input id= "RollD" type="text" size="2"  style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
 
 	</div>
@@ -156,11 +156,11 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	<div id = "Div4" name="Pitch"
 	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
+	<input id= "PitchP" type="text" size="2"  style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
+	<input id= "PitchI" type="text" size="2"  style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
+	<input id= "PitchD" type="text" size="2"  style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
 
 	</div>
@@ -173,11 +173,11 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	<div id = "Div6" name="Yaw"
 	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
+	<input id= "YawP" type="text" size="2"  style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
+	<input id= "YawI" type="text" size="2"  style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
-	<input type="text" size="2" disabled="disabled" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
+	<input id= "YawD" type="text" size="2"  style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
 
 	</div>
@@ -193,7 +193,7 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 <div id="visWindow" name="visWindow">
 
 <div id = "Sim" name="Sim"
-	style="position:absolute;top:50px; left: 45%;border: 2px solid #333333; -moz-border-radius : 10px; height: 460px; width: 600px; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:50px; left: 42%;border: 2px solid #333333; -moz-border-radius : 10px; height: 460px; width: 600px; z-index:100;background-color:rgba(0,0,0,0.3);">
 			<div class="content">
 				<div id="unityPlayer">
 					<div class="missing" >
@@ -216,6 +216,12 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
       style="position:absolute; top:225px; left:28%; border:2px solid #333333; -moz-border-radius : 10px; height: 160px; width: 160px; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<svg id="yawGyro" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</svg>
+	</div>
+
+	<div id = "RPYText" style = "position:absolute; top:395px; left:28%; height: 56px; width: 160px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
+		<span id="RollSpan" style ="position:absolute; top:0px; z-index:10000"> Current Roll: 0&deg </span>
+		<span id="PitchSpan" style ="position:absolute; top:20px;z-index:10000"> Current Pitch: 0&deg </span>
+		<span id="YawSpan" style ="position:absolute; top:40px;x;z-index:100000"> Current Yaw: 0&deg </span>
 	</div>
 
 </div>
@@ -245,6 +251,8 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
 	/*
 	Create Login Window
 	*/
+
+
 
 	var Modal = document.createElement("div");
 	Modal.style.height = document.height + "px";
@@ -389,9 +397,20 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
         //e.preventDefault();
 
         var packet = {
-            pitch:  parseInt(document.getElementById("pA").value,10),
-            roll:  parseInt(document.getElementById("rA").value,10),
-            yaw: parseInt(document.getElementById("yA").value,10)
+            pitch:  parseInt(document.getElementById("pA").value,10) ? parseInt(document.getElementById("pA").value,10) : 0,
+            roll:  parseInt(document.getElementById("rA").value,10) ? parseInt(document.getElementById("rA").value,10) : 0,
+            yaw: parseInt(document.getElementById("yA").value,10) ? parseInt(document.getElementById("yA").value,10) : 0,
+            RollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):0,
+            RollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :0,
+            RollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) : 0,
+            PitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):0,
+            PitchI : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):0,
+            PitchD : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):0,
+            YawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
+            YawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
+            YawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
+            
+            
         }
         $.ajax({
             type: "POST",
@@ -399,7 +418,8 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
             dataType: 'json',
             data: JSON.stringify(packet),
             complete: function (data) {
-              console.log("Sent -> " + packet.pitch + "__" + packet.roll + "___" + packet.yaw);
+              console.log("Sent RPY -> " + packet.pitch + "__" + packet.roll + "___" + packet.yaw);
+              //console.log("Sent PIDs -> " + packet.RollP + "__" + packet.RollI + "___" + packet.RollD);
             }
         });
     };
@@ -416,6 +436,9 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
                   unity.SendMessage("MyObject", "gRoll", data.roll);
                   unity.SendMessage("MyObject", "gPitch", data.pitch);
                   unity.SendMessage("MyObject", "gYaw", data.yaw);
+                  UpdateRollPitchyawSpans(data);
+                  UpdateAH(data);
+                  UpdateYawIndicator(data);
                 }
             });
     }
@@ -423,6 +446,21 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
 
     setInterval(function() { UpdateSimulation(); }, 1000);
 
+
+    function UpdateRollPitchYawSpans(data) {
+    		console.log('updating spans');
+		document.getElementById("RollSpan").innerHTML = "Current Roll: " + data.roll +'&deg';
+		document.getElementById("PitchSpan").innerHTML = "Current Roll: " + data.pitch +'&deg';
+		document.getElementById("YawSpan").innerHTML = "Current Roll: " + data.yaw+'&deg';
+    }
+
+    function UpdateAH(data) {
+
+    }
+
+    function UpdateYawIndicator(data) {
+
+    }
 
 
 /*
