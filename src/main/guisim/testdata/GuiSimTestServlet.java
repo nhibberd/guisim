@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class GuiSimTestServlet extends HttpServlet {
-    private final GuiSimService service = new GuiSimService();
+    private final GuiSimTestService service = new GuiSimTestService();
     private final Gson gson = new Gson();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class GuiSimTestServlet extends HttpServlet {
         Fred fred = gson.fromJson(reader, Fred.class);
 
         //Set a structure that stores all of the data
-        service.set(fred);
+        service.store(fred);
         writer.println("server got " + fred);
 
         //send the data to GuiSimService
