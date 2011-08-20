@@ -12,6 +12,7 @@ public class GuiSimService {
         return fred;
     }
 
+    //rework GuiSimService to setFred with threading, will be called by GuiSimTestService.
     public void set(Fred data) {
         fred.pitch = data.pitch;
         fred.roll = data.roll;
