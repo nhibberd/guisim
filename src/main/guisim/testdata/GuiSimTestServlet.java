@@ -20,7 +20,7 @@ public class GuiSimTestServlet extends HttpServlet {
         BufferedReader reader = req.getReader();
         PrintWriter writer = resp.getWriter();
         String inputData = gson.fromJson(reader, String.class);
-        service.read(inputData);
+        service.store(inputData);
 
 
             //Fred fred = gson.fromJson(reader, Fred.class);
