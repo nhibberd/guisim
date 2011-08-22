@@ -21,9 +21,10 @@ public class GuiSimTestService {
 
     }
 
-    public void read(String data){
+    public String[] read(String data){
         /* Create an array for each block of numbers, each array element with 3 sub-elements? */
         String[] data2 = data.split(",");
+
         String[] test = {""};
         for (int i = 0; i < data2.length; i++){
             String[] he = data2[i].split(" ");
@@ -31,7 +32,7 @@ public class GuiSimTestService {
                 test[q] = he[q];
             }
         }
-
+        return test;
     }
 
 
