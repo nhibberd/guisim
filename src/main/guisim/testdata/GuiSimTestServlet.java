@@ -19,11 +19,15 @@ public class GuiSimTestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
         PrintWriter writer = resp.getWriter();
-        Fred fred = gson.fromJson(reader, Fred.class);
+        String inputData = gson.fromJson(reader, String.class);
+        service.read(inputData);
+
+
+            //Fred fred = gson.fromJson(reader, Fred.class);
 
         //Set a structure that stores all of the data
-        service.store(fred);
-        writer.println("server got " + fred);
+            //service.store(fred);
+            //writer.println("server got " + fred);
 
         //send the data to GuiSimService
 
