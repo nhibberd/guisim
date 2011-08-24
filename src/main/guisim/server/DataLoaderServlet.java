@@ -1,18 +1,16 @@
-package guisim.testdata;
+package guisim.server;
 
 import com.google.gson.Gson;
-import guisim.json.Fred;
-import guisim.server.GuiSimService;
+import guisim.testdata.GuiSimTestService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class GuiSimTestServlet extends HttpServlet {
+public class DataLoaderServlet {
     private final GuiSimTestService service = new GuiSimTestService();
     private final Gson gson = new Gson();
 

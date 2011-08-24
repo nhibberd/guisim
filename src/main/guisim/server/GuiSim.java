@@ -15,6 +15,8 @@ public class GuiSim {
     public static void main(String[] args) {
         Config config = c.compound(
            c.servlet("/guisim", "/*", new GuiSimServlet()),
+           //TODO: test servlet
+           c.servlet("/dataloader", "/*", new DataLoaderServlet()),
            c.path("/", "src/web")
         )
                 ;

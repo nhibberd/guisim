@@ -1,9 +1,8 @@
-package guisim.testdata;
+package guisim.server;
 
 import guisim.json.Fred;
-import scalaz.O;
 
-public class GuiSimTestService {
+public class DataLoaderService {
     Fred fred = new Fred();
 
     public Fred poll() {
@@ -35,14 +34,12 @@ public class GuiSimTestService {
 
     public String[] read(String data){
         String[] data2 = data.split(",");
-        String[] test = {""};
+        String[] he = {""};
         for (int i = 0; i < data2.length; i++){
-            String[] he = data2[i].split(" ");
-            for (int q = 0; q < he.length; i++){
-                test[q] = he[q];
-            }
+            String[] hehe = data2[i].split(" ");
+            he[i] = hehe[i];
         }
-        return test;
+        return he;
     }
 
     /*
@@ -52,7 +49,6 @@ public class GuiSimTestService {
     public static byte[] toBytes(short s)
     {
         return new byte[]{(byte)(s & 0x00FF),(byte)((s & 0xFF00)>>8)};
+
     }
-
-
 }

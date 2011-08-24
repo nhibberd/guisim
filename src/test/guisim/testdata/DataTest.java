@@ -14,11 +14,11 @@ public class DataTest {
     public void stringToArray(){
         //call
         String[] testString = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        checkStringToArray("1 2 3, 4 5 6, 7 8 9", testString);
+        checkStringToArray(testString, "1 2 3, 4 5 6, 7 8 9");
     }
 
-    private void checkStringToArray(String s, String[] i) {
-        assertArrayEquals(service.read(s), i);
+    private void checkStringToArray(String[] i, String s) {
+        assertArrayEquals(i, service.read(s));
     }
 
 }
