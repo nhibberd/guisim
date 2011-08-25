@@ -1,7 +1,7 @@
 package guisim.server;
 
 import com.google.gson.Gson;
-import guisim.json.Fred;
+import guisim.json.Flight;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -20,7 +20,7 @@ public class GuiSimServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
         PrintWriter writer = resp.getWriter();
-        Fred fred = service.poll();
+        Flight fred = service.poll();
         String json = gson.toJson(fred);
         writer.println(json);
     }
@@ -28,7 +28,7 @@ public class GuiSimServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
         PrintWriter writer = resp.getWriter();
-        Fred fred = gson.fromJson(reader, Fred.class);
+        Flight fred = gson.fromJson(reader, Flight.class);
         service.set(fred);
         writer.println("server got " + fred);
     }

@@ -1,19 +1,20 @@
 package guisim.server;
 
-import guisim.json.Fred;
+import guisim.json.Flight;
 
 import javax.xml.crypto.Data;
 import java.util.Random;
 
 public class GuiSimService {
-    Fred fred = new Fred();
+    Flight fred = new Flight();
 
-    public Fred poll() {
+    public Flight poll() {
+        //TODO: return fred from fake data, AtomicReference
         return fred;
     }
 
     //rework GuiSimService to setFred with threading, will be called by GuiSimTestService.
-    public void set(Fred data) {
+    public void set(Flight data) {
         fred.pitch = data.pitch;
         fred.roll = data.roll;
         fred.yaw = data.yaw;

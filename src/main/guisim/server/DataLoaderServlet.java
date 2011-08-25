@@ -1,7 +1,6 @@
 package guisim.server;
 
 import com.google.gson.Gson;
-import guisim.json.Fred;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
