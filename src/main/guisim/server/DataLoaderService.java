@@ -2,23 +2,28 @@ package guisim.server;
 
 import guisim.json.Flight;
 import scala.runtime.Int;
+
+import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class DataLoaderService {
     LinkedList<Flight> DataList = new LinkedList<Flight>();
 
+    private AtomicReference<Flight> stats = new AtomicReference<Flight>(new Flight());
+
     public void haha() {
-        boolean test = true;
-        while(test) {
+        boolean test = false;
+        while(!test) {
             //wait 200ms?
-            Flight data = poll();
+            Flight data = DataList.poll();
             byte[] roll = toBytes((short) data.roll);
             byte[] pitch =  toBytes((short) data.pitch);
             byte[] yaw =  toBytes((short) data.yaw);
+            //byte[] foo = {roll, pitch, yaw};
 
             /*
-            AtomicReference he = new AtomicReference();
+            AtomicReference he = new AtomicReference(foo);
             he.set(data);
             */
         }
