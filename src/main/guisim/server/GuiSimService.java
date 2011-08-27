@@ -1,18 +1,24 @@
 package guisim.server;
 
-import guisim.json.Fred;
+import guisim.json.Flight;
+import sun.security.util.Cache;
 
 import javax.xml.crypto.Data;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GuiSimService {
-    Fred fred = new Fred();
+    Flight fred = new Flight();
+    AtomicReference<Flight> cache = new AtomicReference<Flight>();
 
-    public Fred poll() {
-        return fred;
+    public Flight poll() {
+        //TODO: return fred from fake data, AtomicReference
+        //cache.get();
+        return cache.get();
     }
 
-    public void set(Fred data) {
+    //rework GuiSimService to setFred with threading, will be called by GuiSimTestService.
+    public void set(Flight data) {
         fred.pitch = data.pitch;
         fred.roll = data.roll;
         fred.yaw = data.yaw;

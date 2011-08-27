@@ -2,11 +2,11 @@ $(document).ready(function () {
     var send = function (e) {
         e.preventDefault();
         var packet = {
-            data:  $("#input input").val()
+            data:  $("#data input").val()
         }
         $.ajax({
             type: "POST",
-            url: "/guisim/",
+            url: "/dataloader/",
             dataType: 'json',
             data: JSON.stringify(packet),
             complete: function (data) {

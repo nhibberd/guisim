@@ -1,0 +1,28 @@
+package guisim.testdata;
+
+
+import guisim.server.DataLoaderService;
+import org.junit.Test;
+import scala.runtime.Int;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
+public class DataTest {
+    DataLoaderService service = new DataLoaderService();
+
+    @Test
+    public void shortToByte(){
+        //call
+        checkShortToByte((short) 1, (byte) 0x00, (byte) 0x01);
+        checkShortToByte((short) -1, (byte) 0xff, (byte) 0xff);
+        checkShortToByte((short) 20, (byte) 0x00, (byte) 0x14);
+        checkShortToByte((short) 360, (byte) 0x01, (byte) 0x68);
+    }
+
+    private void checkShortToByte(short s, byte b1, byte b2) {
+        assertArrayEquals(service.toBytes(s), new byte[]{b1, b2} );
+    }
+
+}
+
