@@ -12,8 +12,7 @@ public class HardwareLoader implements Runnable {
     }
 
     private void loadData() {
-        FromHardware event = hardwareEvents.next();
-
-
+        // TODO Get data from hardware/
+        // TODO Parse and add data to hardwareEvents.
     }
 }

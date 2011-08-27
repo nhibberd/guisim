@@ -1,15 +1,13 @@
 package guisim.server;
 
 
-import guisim.json.Flight;
+import guisim.load.HardwareLoader;
 import io.mth.foil.j.Foil;
 import io.mth.foil.j.Config;
 import io.mth.foil.j.Configs;
 import io.mth.foil.j.DefaultConfigs;
 import io.mth.foil.j.DefaultFoils;
 import io.mth.foil.j.Foils;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class GuiSim {
     private static final Foils foils = new DefaultFoils();
@@ -23,7 +21,14 @@ public class GuiSim {
         )
                 ;
         Foil foil = foils.nu("guisim", 10080, config);
+        startLoader();
         foil.run();
+    }
+    private static void startLoader() {
+        HardwareLoader worker = new HardwareLoader();
+        Thread t = new Thread(worker);
+        t.setDaemon(true);
+        t.start();
     }
 
 }

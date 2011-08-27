@@ -21,16 +21,16 @@ public class GuiSimServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
         PrintWriter writer = resp.getWriter();
-        Flight fred = service.poll();
-        String json = gson.toJson(fred);
+        Flight flight = service.poll();
+        String json = gson.toJson(flight);
         writer.println(json);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
         PrintWriter writer = resp.getWriter();
-        Flight fred = gson.fromJson(reader, Flight.class);
-        service.set(fred);
-        writer.println("server got " + fred);
+        Flight flight = gson.fromJson(reader, Flight.class);
+        service.send(flight);
+        writer.println("server got " + flight);
     }
 }

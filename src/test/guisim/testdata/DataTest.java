@@ -1,6 +1,7 @@
 package guisim.testdata;
 
 
+import guisim.model.Parse;
 import guisim.server.DataLoaderService;
 import org.junit.Test;
 import scala.runtime.Int;
@@ -9,7 +10,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class DataTest {
-    DataLoaderService service = new DataLoaderService();
+    Parse parse = new Parse();
 
     @Test
     public void shortToByte(){
@@ -21,7 +22,7 @@ public class DataTest {
     }
 
     private void checkShortToByte(short s, byte b1, byte b2) {
-        assertArrayEquals(service.toBytes(s), new byte[]{b1, b2} );
+        assertArrayEquals(parse.toBytes(s), new byte[]{b1, b2} );
     }
 
 }

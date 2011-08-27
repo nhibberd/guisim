@@ -28,7 +28,7 @@ public class ParseTest {
     }
 
     private void checkDatapoint(short degrees, short p, short i, short d, byte[] data) {
-        DataPoint result = parse.datapoint(data);
+        FromGui result = parse.datapoint(data);
         assertEquals(degrees, result.degrees);
         assertEquals(p, result.p);
         assertEquals(i, result.i);

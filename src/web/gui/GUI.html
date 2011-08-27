@@ -501,12 +501,15 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
                   UpdateRollPitchyawSpans(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
+                  setTimeout(UpdateSimulation, 1000);
                 }
             });
-    }
+        } else {
+            setTimeout(UpdateSimulation, 1000);
+        }
     };
 
-    setInterval(function() { UpdateSimulation(); }, 1000);
+    setTimeout(UpdateSimulation, 1000);
 
 
     function UpdateRollPitchYawSpans(data) {

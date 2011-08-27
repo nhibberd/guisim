@@ -2,8 +2,8 @@ $(document).ready(function () {
     var send = function (e) {
         e.preventDefault();
         var packet = {
-            data:  $("#data input").val()
-        }
+            data:  $("#data textarea").val()
+        };
         $.ajax({
             type: "POST",
             url: "/dataloader/",

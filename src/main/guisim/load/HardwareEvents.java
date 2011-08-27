@@ -1,26 +1,26 @@
 package guisim.load;
 
-import guisim.json.Flight;
+import guisim.model.FromHardware;
 import guisim.server.ServerException;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class HardwareEvents {
-    // This is static so that there is only ever one set of flights shared between everything.
-    private static final BlockingQueue<Flight> flights = new LinkedBlockingQueue<Flight>();
+    // This is static so that there is only ever one set of events shared between everything.
+    private static final BlockingQueue<FromHardware> events = new LinkedBlockingQueue<FromHardware>();
 
-    public void put(Flight f) {
+    public void put(FromHardware f) {
         try {
-            flights.put(f);
+            events.put(f);
         } catch (InterruptedException e) {
             throw new ServerException(e);
         }
     }
 
-    public Flight next() {
+    public FromHardware next() {
         try {
-            return flights.take();
+            return events.take();
         } catch (InterruptedException e) {
             throw new ServerException(e);
         }
