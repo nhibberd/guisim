@@ -2,6 +2,7 @@ package guisim.server;
 
 import guisim.json.Flight;
 import scala.runtime.Int;
+import sun.security.util.Cache;
 
 import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
@@ -28,6 +29,7 @@ public class DataLoaderService {
             */
         }
         //TODO: convert to bytes, and pass to GuiSimServlet (AtomicReference)
+        //new AtomicReference<Flight>.set(Flight );
     }
 
     public Flight poll() {

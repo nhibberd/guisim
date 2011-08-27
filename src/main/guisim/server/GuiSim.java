@@ -1,12 +1,15 @@
 package guisim.server;
 
 
+import guisim.json.Flight;
 import io.mth.foil.j.Foil;
 import io.mth.foil.j.Config;
 import io.mth.foil.j.Configs;
 import io.mth.foil.j.DefaultConfigs;
 import io.mth.foil.j.DefaultFoils;
 import io.mth.foil.j.Foils;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GuiSim {
     private static final Foils foils = new DefaultFoils();

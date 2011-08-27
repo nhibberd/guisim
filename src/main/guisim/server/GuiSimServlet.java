@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GuiSimServlet extends HttpServlet {
     private final GuiSimService service = new GuiSimService();
