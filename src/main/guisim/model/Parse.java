@@ -1,4 +1,4 @@
-package guisim.parse;
+package guisim.model;
 
 public class Parse {
     public DataPoint datapoint(byte[] data) {

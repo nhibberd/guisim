@@ -1,7 +1,6 @@
-package guisim.parse;
+package guisim.model;
 
 import org.junit.Test;
-import scala.runtime.Int;
 
 import static org.junit.Assert.assertEquals;
 
