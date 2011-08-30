@@ -278,7 +278,7 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 	</svg>
 	</div>
 
-	<div id = "RPYText" style = "position:absolute; top:395px; left:28%; height: 56px; width: 160px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
+	<div id = "RPYText" style = "position:absolute; text-align:left; top:395px; left:28%; height: 56px; width: 160px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
 		<span id="RollSpan" style ="position:absolute; top:0px; z-index:10000"> Current Roll: 0&deg </span>
 		<span id="PitchSpan" style ="position:absolute; top:20px;z-index:10000"> Current Pitch: 0&deg </span>
 		<span id="YawSpan" style ="position:absolute; top:40px;x;z-index:100000"> Current Yaw: 0&deg </span>
@@ -498,7 +498,7 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
                   unity.SendMessage("MyObject", "gRoll", data.roll);
                   unity.SendMessage("MyObject", "gPitch", data.pitch);
                   unity.SendMessage("MyObject", "gYaw", data.yaw);
-                  UpdateRollPitchyawSpans(data);
+                  UpdateRollPitchYawSpans(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
                   setTimeout(UpdateSimulation, 1000);
