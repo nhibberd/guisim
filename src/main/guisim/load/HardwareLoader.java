@@ -49,7 +49,11 @@ public class HardwareLoader implements Runnable {
             }
 
             if (workingLength == 0) {
-                System.arraycopy(readBuffer, readLength, workingBuffer, 0, (readLength-newLength));
+                try{
+                    System.arraycopy(readBuffer, readLength, workingBuffer, 0, (readLength-newLength));
+                } catch (ArrayIndexOutOfBoundsException e){
+                    //stuff
+                }
             }
             workingLength = readLength - newLength;
 
