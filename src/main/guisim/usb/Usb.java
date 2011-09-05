@@ -1,10 +1,11 @@
 package guisim.usb;
 
 import javax.comm.*;
-import javax.sound.sampled.Port;
 import java.util.Enumeration;
 
 public class Usb {
+
+    private static CommPortIdentifier communicationPort = null;
 
     //http://en.wikibooks.org/wiki/Serial_Programming/Serial_Java
     public void AutoSetupPort(){
@@ -33,11 +34,11 @@ public class Usb {
     }
 
     public void SetupPort() throws NoSuchPortException {
-        CommPortIdentifier commPort = CommPortIdentifier.getPortIdentifier("asd");  //arduino ID/name?
+        communicationPort = CommPortIdentifier.getPortIdentifier("asd");  //arduino ID/name?
 
         SerialPort port = null;
         try{
-            port = (SerialPort) commPort.open("arduion", 10);
+            port = (SerialPort) communicationPort.open("arduion", 10);
         } catch(PortInUseException e) {
             //error
         }

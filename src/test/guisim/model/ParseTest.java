@@ -24,7 +24,7 @@ public class ParseTest {
     }
 
     private void checkParseShort(short s, int i, int i1) {
-        assertEquals(s, parse.parseShort((byte) i , (byte) i1));
+        assertEquals(s, parse.parseToShort((byte) i, (byte) i1));
     }
 
     private void checkDatapoint(short degrees, short p, short i, short d, byte[] data) {

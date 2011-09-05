@@ -3,6 +3,10 @@ package guisim.load;
 import guisim.model.FromHardware;
 import scalaz.Input;
 
+import javax.comm.CommPort;
+import javax.comm.CommPortIdentifier;
+import javax.comm.NoSuchPortException;
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
@@ -19,6 +23,7 @@ public class HardwareLoader implements Runnable {
     }
 
     private void loadData() {
+        CommPortIdentifier communicationPort;
         for(;;) {
             //ByteBuffer[] workingBuffer = new ByteBuffer[6];
             byte[] workingBuffer = new byte[6];
@@ -26,6 +31,7 @@ public class HardwareLoader implements Runnable {
             //ByteBuffer[] readBuffer = new ByteBuffer[6];
             byte[] readBuffer = new byte[6];
             int readLength = 0;
+            //communicationPort.
             InputStream input = null;
             try {
                 if (input != null) {
