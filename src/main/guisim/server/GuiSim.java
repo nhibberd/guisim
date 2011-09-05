@@ -2,6 +2,7 @@ package guisim.server;
 
 
 import guisim.load.HardwareLoader;
+import guisim.usb.Usb;
 import io.mth.foil.j.Foil;
 import io.mth.foil.j.Config;
 import io.mth.foil.j.Configs;
@@ -21,14 +22,15 @@ public class GuiSim {
         )
                 ;
         Foil foil = foils.nu("guisim", 10080, config);
-        startLoader();
+        new Usb();
         foil.run();
     }
+    /*
     private static void startLoader() {
         HardwareLoader worker = new HardwareLoader();
         Thread t = new Thread(worker);
         t.setDaemon(true);
         t.start();
-    }
+    } */
 
 }
