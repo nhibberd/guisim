@@ -1,7 +1,10 @@
 package guisim.usb;
 
 public class Output {
-    public void send(){
-        //send stuff
+    //TODO Output stream
+    public void output(byte[] data){
+
+
     }
+
 }

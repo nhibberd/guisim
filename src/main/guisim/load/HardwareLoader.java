@@ -26,10 +26,10 @@ public class HardwareLoader implements Runnable {
             //ByteBuffer[] readBuffer = new ByteBuffer[6];
             byte[] readBuffer = new byte[6];
             int readLength = 0;
-            InputStream haha = null;
+            InputStream input = null;
             try {
-                if (haha != null) {
-                    readLength = haha.read(readBuffer);
+                if (input != null) {
+                    readLength = input.read(readBuffer);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -56,7 +56,6 @@ public class HardwareLoader implements Runnable {
                 }
             }
             workingLength = readLength - newLength;
-
         }
     }
 }

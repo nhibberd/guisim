@@ -23,5 +23,10 @@ public class GuiSimService {
 
     public void send(Flight flight) {
         // TODO send to hardware
+
+        // TODO parse input to byte[]
+
+
+        // TODO /usb/Output/output(data)
     }
 }
