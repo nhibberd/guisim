@@ -3,16 +3,13 @@ package guisim.usb;
 import guisim.load.HardwareLoader;
 
 import javax.comm.*;
-import javax.sound.sampled.Port;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Enumeration;
+import java.io.OutputStream;
 
 public class Usb {
-    private static CommPortIdentifier communicationPort = null;
-
     public void main() throws NoSuchPortException, IOException {
-        communicationPort = CommPortIdentifier.getPortIdentifier("asd");  //arduino ID/name?
+        CommPortIdentifier communicationPort = CommPortIdentifier.getPortIdentifier("asd");  //arduino ID/name?
 
         SerialPort port = null;
         try{
@@ -21,11 +18,20 @@ public class Usb {
             //error
         }
         try {
-            port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            if (port != null) {
+                port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            }
         } catch(UnsupportedCommOperationException e) {
             //error
         }
-        startLoader(port.getInputStream());
+        if (port != null) {
+            startLoader(port.getInputStream());
+            startOutput(port.getOutputStream());
+        }
+    }
+
+    private static void startOutput(OutputStream data) {
+        Output outputWorker = new Output(data);
     }
 
     private static void startLoader(InputStream data) {

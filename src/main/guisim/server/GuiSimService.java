@@ -4,6 +4,8 @@ import guisim.json.Flight;
 import guisim.load.HardwareEvents;
 import guisim.model.FromHardware;
 import guisim.model.Parse;
+import guisim.usb.Output;
+import scalaz.EnumerationW;
 import sun.security.util.Cache;
 
 import javax.xml.crypto.Data;
@@ -12,6 +14,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class GuiSimService {
     private final HardwareEvents events = new HardwareEvents();
+    private Output outputWorker;
 
     public Flight poll() {
         FromHardware next = events.next();
@@ -24,11 +27,10 @@ public class GuiSimService {
 
     public void send(Flight data) {
         Parse parse = new Parse();
-        Byte[] outputData = new Byte[6];
+        byte[] outputData = new byte[6];
         System.arraycopy(parse.parseToBytes((short) data.roll),0,outputData,0,2);
         System.arraycopy(parse.parseToBytes((short) data.pitch),0,outputData,2,2);
         System.arraycopy(parse.parseToBytes((short) data.yaw),0,outputData,4,2);
-
-        // TODO /usb/Output/output(data)
+        outputWorker.main(outputData);
     }
 }
