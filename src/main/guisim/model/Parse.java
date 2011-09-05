@@ -1,7 +1,8 @@
 package guisim.model;
 
+import javax.swing.plaf.basic.BasicBorders;
+
 public class Parse {
-    // TODO this should parse FromHardware, no p,i,d
     public FromGui datapoint(byte[] data) {
         if (data.length != 8)
             throw new IllegalArgumentException("Invalid length, datapoint must be 8 bytes");
@@ -10,6 +11,15 @@ public class Parse {
         short i = parseShort(data[4], data[5]);
         short d = parseShort(data[6], data[7]);
         return new FromGui(degrees, p, i, d);
+    }
+
+    public FromHardware datapointFromHardware(byte[] data) {
+        if (data.length != 8)
+            throw new IllegalArgumentException("Invalid length, datapoint must be 8 bytes");
+        short roll = parseShort(data[0], data[1]);
+        short pitch = parseShort(data[2], data[3]);
+        short yaw = parseShort(data[4], data[5]);
+        return new FromHardware(roll, pitch, yaw);
     }
 
     public short parseShort(byte b1, byte b2) {
