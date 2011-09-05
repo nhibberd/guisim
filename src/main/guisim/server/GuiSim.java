@@ -39,12 +39,4 @@ public class GuiSim {
         Foil foil = foils.nu("guisim", 10080, config);
         foil.run();
     }
-    /*
-    private static void startLoader() {
-        HardwareLoader worker = new HardwareLoader();
-        Thread t = new Thread(worker);
-        t.setDaemon(true);
-        t.start();
-    } */
-
 }
