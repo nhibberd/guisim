@@ -31,7 +31,7 @@ public class Usb {
     }
 
     private static void startOutput(OutputStream data) {
-        Output outputWorker = new Output(data);
+        final Output outputWorker = new Output(data);
     }
 
     private static void startLoader(InputStream data) {
