@@ -8,7 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Usb {
-    public void main() throws NoSuchPortException, IOException {
+
+    public OutputStream start() throws NoSuchPortException, IOException {
         CommPortIdentifier communicationPort = CommPortIdentifier.getPortIdentifier("asd");  //arduino ID/name?
 
         SerialPort port = null;
@@ -26,12 +27,9 @@ public class Usb {
         }
         if (port != null) {
             startLoader(port.getInputStream());
-            startOutput(port.getOutputStream());
+            return port.getOutputStream();
         }
-    }
-
-    private static void startOutput(OutputStream data) {
-        final Output outputWorker = new Output(data);
+        return null;
     }
 
     private static void startLoader(InputStream data) {

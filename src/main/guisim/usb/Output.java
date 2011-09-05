@@ -4,13 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class Output {
-    private final OutputStream device;
-
-    public Output(OutputStream device) {
-        this.device = device;
-    }
-
-    public void main(byte[] data){
+    public void main(byte[] data, OutputStream device){
         try {
             device.write(data);
         } catch (IOException e) {

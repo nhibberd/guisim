@@ -9,6 +9,7 @@ import scalaz.EnumerationW;
 import sun.security.util.Cache;
 
 import javax.xml.crypto.Data;
+import java.io.OutputStream;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -25,12 +26,12 @@ public class GuiSimService {
         return flight;
     }
 
-    public void send(Flight data) {
+    public void send(Flight data, OutputStream device) {
         Parse parse = new Parse();
         byte[] outputData = new byte[6];
         System.arraycopy(parse.parseToBytes((short) data.roll),0,outputData,0,2);
         System.arraycopy(parse.parseToBytes((short) data.pitch),0,outputData,2,2);
         System.arraycopy(parse.parseToBytes((short) data.yaw),0,outputData,4,2);
-        outputWorker.main(outputData);
+        outputWorker.main(outputData, device);
     }
 }

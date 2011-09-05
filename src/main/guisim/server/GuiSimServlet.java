@@ -8,15 +8,17 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class GuiSimServlet extends HttpServlet {
     private final GuiSimService service = new GuiSimService();
     private final Gson gson = new Gson();
+    private OutputStream device;
+
+    public GuiSimServlet(OutputStream device) {
+        this.device = device;
+    }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
@@ -30,7 +32,7 @@ public class GuiSimServlet extends HttpServlet {
         BufferedReader reader = req.getReader();
         PrintWriter writer = resp.getWriter();
         Flight flight = gson.fromJson(reader, Flight.class);
-        service.send(flight);
+        service.send(flight, device);
         writer.println("server got " + flight);
     }
 }
