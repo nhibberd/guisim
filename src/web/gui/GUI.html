@@ -86,20 +86,20 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 </div>
 
 <div id = "InputControls" name="InputControls"
-	style="position:absolute;top:25px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
-	<span style ="position:absolute; top:0pt; right:2%;"> Input Controls </span>
+	style="position:absolute;top:25px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; right:1%;"><font size="-1"> Input Controls </font></span>
 	<button id="rpyBtn" type="button" onClick=btnRpy(); style="position:absolute; top:-2.5pt; left:0pt;">Roll, Pitch & Yaw</button>
 	<button id="pidBtn" type="button" onClick=btnPid(); style="position:absolute; top:-2.5pt; left:90pt;">P-I-D</button>
 	</div>
 <div id="rpyWindow">
 
 	<div id = "RollWindowTitle" name="RollTitle"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Roll </span>
 	</div>
 
 	<div id = "RollWindow" name="Roll"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
 	<span style ="position:absolute;  top:20pt; left:10%;"> Roll Angle(&deg) </span>
 	<input type="text" onkeydown="return ( event.ctrlKey || event.altKey 
@@ -111,12 +111,12 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	</div>
 
 	<div id = "PitchTitle" name="PitchTitle"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Pitch </span>
 	</div>
 
 	<div id = "PitchWindow" name="Pitch"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
 	<span style ="position:absolute; top:20pt; left:10%;"> Pitch Angle(&deg) </span>
 	<input type="text" onkeydown="return ( event.ctrlKey || event.altKey 
@@ -128,12 +128,12 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	</div>
 
 	<div id = "YawTitle" name="YawTitle"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
 	</div>
 
 	<div id = "YawWindow" name="Yaw"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
 	<span style ="position:absolute; top:20pt; left:10%;"> Yaw Angle(&deg) </span>
 	<input type="text" onkeydown="return ( event.ctrlKey || event.altKey 
@@ -147,12 +147,12 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 
 <div id="pidWindow" hidden="hidden">
     <div id = "Div1" name="RollTitle"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Roll </span>
 	</div>
 
 	<div id = "Div2" name="Roll"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
 	<input id= "RollP" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
@@ -179,12 +179,12 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	</div>
 
 	<div id = "Div3" name="PitchTitle"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Pitch </span>
 	</div>
 
 	<div id = "Div4" name="Pitch"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
 	<input id= "PitchP" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
@@ -211,12 +211,12 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 	</div>
 
 	<div id = "Div5" name="YawTitle"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
 	</div>
 
 	<div id = "Div6" name="Yaw"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
 	<input id= "YawP" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
@@ -244,16 +244,16 @@ style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-borde
 </div>
 
 <div id = "OutputControls" name="OutputControls"
-style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 71%; z-index:100;background-color:rgba(0,0,0,0.3);">
+style="position:absolute;top:25px; left: 26%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 73%; z-index:100;background-color:rgba(0,0,0,0.3);">
 <button id="rpyBtn" type="button" onClick=btnVis(); style="position:absolute; top:-2.5pt; left:0pt;">Visualisations</button>
 <button id="pidBtn" type="button" onClick=btnTxt(); style="position:absolute; top:-2.5pt; left:87pt;">Text Output</button>
-<span style ="position:absolute; top:0pt; left:40%;"> Output Controls </span>
+<span style ="position:absolute; top:0pt; left:40%;"><font size="-1"><center> Output Controls </center></font></span>
 </div>
 
 <div id="visWindow" name="visWindow">
 
 <div id = "Sim" name="Sim"
-	style="position:absolute;top:50px; left: 42%;border: 2px solid #333333; -moz-border-radius : 10px; height: 500px; width: 500px; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:50px; left: 50%;border: 2px solid #333333; -moz-border-radius : 10px; height: 500px; width: 500px; z-index:100;background-color:rgba(0,0,0,0.3);">
 			<div class="content">
 				<div id="unityPlayer">
 					<div class="missing" >
@@ -267,21 +267,25 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 
 
 	<div id="rollPitchPanel"
-      style="position:absolute;top:55px; left: 28%;border: 2px solid #333333; -moz-border-radius : 10px; height: 160px; width: 160px; z-index:100;background-color:rgba(0,0,0,0.3);">
+      style="position:absolute;top:55px; left: 26%;border: 2px solid #333333; -moz-border-radius : 10px; height: 200px; width: 200px; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<svg id="gNode" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</div>
 
 
 	<div id="yawPanel"
-      style="position:absolute; top:225px; left:28%; border:2px solid #333333; -moz-border-radius : 10px; height: 160px; width: 160px; z-index:100;background-color:rgba(0,0,0,0.3);">
+      style="position:absolute; top:265px; left:26%; border:2px solid #333333; -moz-border-radius : 10px; height: 200px; width: 200px; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<svg id="yawGyro" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</svg>
 	</div>
 
-	<div id = "RPYText" style = "position:absolute; text-align:left; top:395px; left:28%; height: 56px; width: 160px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
-		<span id="RollSpan" style ="position:absolute; top:0px; z-index:10000"> Current Roll: 0&deg </span>
-		<span id="PitchSpan" style ="position:absolute; top:20px;z-index:10000"> Current Pitch: 0&deg </span>
-		<span id="YawSpan" style ="position:absolute; top:40px;x;z-index:100000"> Current Yaw: 0&deg </span>
+<div style="position:absolute; text-align:left; top:265px; left:26%; height: 200px; width: 200px; z-index:100;">
+<img src="markers.png" />
+</div>
+
+	<div id = "RPYText" style = "position:absolute; top:475px; text-align:left; left:26%; height: 56px; width: 200px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
+		<span id="RollSpan" style ="position:absolute; text-align:left; top:0px; z-index:10000"> Current Roll: 0&deg </span>
+		<span id="PitchSpan" style ="position:absolute; text-align:left; top:20px;z-index:10000"> Current Pitch: 0&deg </span>
+		<span id="YawSpan" style ="position:absolute; text-align:left; top:40px;x;z-index:100000"> Current Yaw: 0&deg </span>
 	</div>
 
 </div>
@@ -299,7 +303,7 @@ style="position:absolute;top:25px; left: 28%;border: 2px solid #333333; -moz-bor
 </div>
 
 <div id = "Sim" name="Sim"
-style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:27%; z-index:100;background-color:rgba(0,0,0,0.3);">
+style="position:absolute;top:490px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 <button type="button" style="position:absolute;top:25%; left: 5%;" onClick=SendAngles();>SEND ANGLES</button>
 </div>
 
@@ -512,20 +516,22 @@ style="position:absolute;top:470px; left: 0%;border: 2px solid #333333; -moz-bor
     setTimeout(UpdateSimulation, 1000);
 
 
-    function UpdateRollPitchYawSpans(data) {
+   function UpdateRollPitchYawSpans(data) {
     		console.log('updating spans');
 		document.getElementById("RollSpan").innerHTML = "Current Roll: " + data.roll +'&deg';
-		document.getElementById("PitchSpan").innerHTML = "Current Roll: " + data.pitch +'&deg';
-		document.getElementById("YawSpan").innerHTML = "Current Roll: " + data.yaw+'&deg';
+		document.getElementById("PitchSpan").innerHTML = "Current Pitch: " + data.pitch +'&deg';
+		document.getElementById("YawSpan").innerHTML = "Current Yaw: " + data.yaw+'&deg';
     }
 
-    function UpdateAH(data) {
+	function UpdateAH(data) {
 
-    }
+	}
 
-    function UpdateYawIndicator(data) {
-
-    }
+	function UpdateYawIndicator(data) {
+        console.log(data.yaw);
+		pin.setAttribute("transform", "rotate("+ parseInt(data.yaw) +" "+100+" "+100+")");
+	
+	}
 
 
 /*
@@ -535,23 +541,23 @@ BIT OF BOTH
     var svgNode = document.getElementById('gNode');
     var rT = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rT.setAttribute("x",-40);
-    rT.setAttribute("y",-20);
-    rT.setAttribute("height",100);
-    rT.setAttribute("width",240);
+    rT.setAttribute("y",-53);
+    rT.setAttribute("height",150);
+    rT.setAttribute("width",250);
     rT.setAttribute("fill", 'blue');
 
     var rB = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rB.setAttribute("x",-40);
-    rB.setAttribute("y",80);
-    rB.setAttribute("height",100);
-    rB.setAttribute("width",240);
+    rB.setAttribute("y",97);
+    rB.setAttribute("height",150);
+    rB.setAttribute("width",250);
     rB.setAttribute("fill", 'brown');
 
     svgNode.appendChild(rB);
     svgNode.appendChild(rT);
 
     var Case = GenerateGyroCover();
-    Case.setAttribute("transform", "translate("+ 0 + " " + -4 + ") scale("+ 0.55 +" "+ 0.55 +")");
+    Case.setAttribute("transform", "translate("+ 0 + " " + -4 + ") scale("+ 0.65 +" "+ 0.66 +")");
     svgNode.appendChild(Case);
 
     var xDir = true;
@@ -569,18 +575,18 @@ setInterval ( "doSomething()", 50 );
     if(yDir) { y++ }
     else { y-- }
 
-    if(x>4) { xDir=false; }
-    if(x<-4) { xDir = true; }
+    if(x>20) { xDir=false; }
+    if(x<-20) { xDir = true; }
 
-    if(y>4) { yDir = false; }
-    if(y<-4) { yDir = true; }
+    if(y>20) { yDir = false; }
+    if(y<-20) { yDir = true; }
 
     //Translate UP and DOWN
-   // rT.setAttribute("transform", "translate("+ 0 +" "+x+")rotate("+ x +" "+80+" "+80+")");
-   // rB.setAttribute("transform", "translate("+ 0 +" "+y+") rotate("+ y +" "+80+" "+80+")");
+   // rT.setAttribute("transform", "translate("+ 0 +" "+x+")rotate("+ x +" "+80+" "+70+")");
+   // rB.setAttribute("transform", "translate("+ 0 +" "+y+") rotate("+ y +" "+80+" "+70+")");
 
-   rT.setAttribute("transform", "rotate("+ x +" "+80+" "+80+")");
-   rB.setAttribute("transform", "rotate("+ y +" "+80+" "+80+")");
+   rT.setAttribute("transform", "rotate("+ x +" "+100+" "+75+")");
+   rB.setAttribute("transform", "rotate("+ y +" "+100+" "+75+")");
 
 }
 
@@ -588,32 +594,45 @@ setInterval ( "doSomething()", 50 );
 
     var svgYawNode = document.getElementById('yawGyro');
     var yawBack = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    yawBack.setAttribute("height",160);
-    yawBack.setAttribute("width",160);
+    yawBack.setAttribute("height",200);
+    yawBack.setAttribute("width",200);
     yawBack.setAttribute("fill", "black");
 
     var yawCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    yawCircle.setAttribute("cx", "80");
-    yawCircle.setAttribute("cy", "80");
-    yawCircle.setAttribute("r", "80");
+    yawCircle.setAttribute("cx", "100");
+    yawCircle.setAttribute("cy", "100");
+    yawCircle.setAttribute("r", "100");
     yawCircle.setAttribute("fill", "white");
 
     var pin = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    pin.setAttribute("x",80);
+    pin.setAttribute("x",100);
     pin.setAttribute("y",0);
-    pin.setAttribute("height",80);
+    pin.setAttribute("height",100);
     pin.setAttribute("width",1);
     pin.setAttribute("fill", "red");
 
+    var yawSmallerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    yawSmallerCircle.setAttribute("cx", 100);
+    yawSmallerCircle.setAttribute("cy", 100);
+    yawSmallerCircle.setAttribute("r", 5);
+    yawSmallerCircle.setAttribute("fill", "black");
+
+    var pin = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    pin.setAttribute("x",100);
+    pin.setAttribute("y",0);
+    pin.setAttribute("height",100);
+    pin.setAttribute("width",1);
+    pin.setAttribute("fill", "red");
 
     svgYawNode.appendChild(yawBack);
     svgYawNode.appendChild(yawCircle);
     svgYawNode.appendChild(pin);
+    svgYawNode.appendChild(yawSmallerCircle);
 
 //yaw markings for each quarter
     for(var i = 0; i <= 360; i += 90){
 	var longerMark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-	longerMark.setAttribute("x",80);
+	longerMark.setAttribute("x",100);
     	longerMark.setAttribute("y",0);
     	longerMark.setAttribute("height",10);
     	longerMark.setAttribute("width",1);
@@ -621,13 +640,13 @@ setInterval ( "doSomething()", 50 );
 
         svgYawNode.appendChild(longerMark);
 
-        longerMark.setAttribute("transform", "rotate("+ i +" "+80+" "+80+")");
+        longerMark.setAttribute("transform", "rotate("+ i +" "+100+" "+100+")");
     }
 
 //yaw markings for each 10 degree intervals
     for(var i = 0; i <= 360; i += 10){
 	var mark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-	mark.setAttribute("x",80);
+	mark.setAttribute("x",100);
    	mark.setAttribute("y",0);
     	mark.setAttribute("height",5);
     	mark.setAttribute("width",1);
@@ -635,26 +654,42 @@ setInterval ( "doSomething()", 50 );
 
 	svgYawNode.appendChild(mark);
 
-        mark.setAttribute("transform", "rotate("+ i +" "+80+" "+80+")");
+        mark.setAttribute("transform", "rotate("+ i +" "+100+" "+100+")");
+    }
+
+//yaw inner markings for each 10 degree intervals
+    for(var i = 0; i <= 360; i += 10){
+	var mark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+	mark.setAttribute("x",100);
+   	mark.setAttribute("y",55);
+    	mark.setAttribute("height",5);
+    	mark.setAttribute("width",1);
+    	mark.setAttribute("fill", "black");
+
+	svgYawNode.appendChild(mark);
+
+        mark.setAttribute("transform", "rotate("+ i +" "+100+" "+100+")");
     }
 
     var yawPivot = true;
     var yawDegreeMoved = 0;
-    var recievedYaw = 180;//yaw degree returned from JSON can be +/- 360
+    var recievedYaw = -180;//yaw degree returned from JSON can be +/- 360
 
-setInterval ("yaw()", 20);
+//setInterval ("yaw()", 20);
 
 //code for the yaw pin
 function yaw() {
 
-    if(yawPivot){yawDegreeMoved++;}
-    else{yawDegreeMoved--;}
-
+    if(yawPivot){
+		if(recievedYaw > 0){yawDegreeMoved++;}
+		else if(recievedYaw < 0){yawDegreeMoved--;}
+    }
+	
     if(yawDegreeMoved == recievedYaw){yawPivot = false;}
-    if(yawDegreeMoved == -recievedYaw){yawPivot = true;}
+    //if(yawDegreeMoved == -recievedYaw){yawPivot = true;}
 
 
-    pin.setAttribute("transform", "rotate("+ yawDegreeMoved +" "+80+" "+80+")");
+    pin.setAttribute("transform", "rotate("+ yawDegreeMoved +" "+100+" "+100+")");
 
 }
 
