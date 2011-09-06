@@ -2,6 +2,7 @@ package guisim.model;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class ParseTest {
@@ -23,8 +24,16 @@ public class ParseTest {
         checkParseShort((short) -360, 0xFC, 0x98);
     }
 
+    @Test
+    public void shortToByte(){
+        checkShortToByte((short) 1, (byte) 0x00, (byte) 0x01);
+        checkShortToByte((short) -1, (byte) 0xff, (byte) 0xff);
+        checkShortToByte((short) 20, (byte) 0x00, (byte) 0x14);
+        checkShortToByte((short) 360, (byte) 0x01, (byte) 0x68);
+    }
+
     private void checkParseShort(short s, int i, int i1) {
-        assertEquals(s, parse.parseShort((byte) i , (byte) i1));
+        assertEquals(s, parse.parseToShort((byte) i, (byte) i1));
     }
 
     private void checkDatapoint(short degrees, short p, short i, short d, byte[] data) {
@@ -33,5 +42,9 @@ public class ParseTest {
         assertEquals(p, result.p);
         assertEquals(i, result.i);
         assertEquals(d, result.d);
+    }
+
+    private void checkShortToByte(short s, byte b1, byte b2) {
+        assertArrayEquals(parse.parseToBytes(s), new byte[]{b1, b2} );
     }
 }

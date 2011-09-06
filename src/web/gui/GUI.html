@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-     <script src="jquery.js"></script>
-  <script src="json2.js"></script>
- <script src="ArtificialHorizonCover.js"></script> 
+
+<script src="jquery.js"></script>
+<script src="json2.js"></script>
+<script src="ArtificialHorizonCover.js"></script>
 <style>
 
 </style>
@@ -73,187 +73,252 @@
 		}
 		-->
 		</style>
-	</head>
 
-	<body>
+</head>
+<body>
 
 <div id= "Application" hidden="hidden">
 
 <div id = "Title" name="Title"
 style="position:absolute;top:0%; left: 0px;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 99%; z-index:100;background-color:rgba(0,0,0,0.3);">
-<center><font size="+2"> 3DOF Simulator </font><center>
+<center><font size="+1"> 3DOF Simulator </font></center>
 <button id="BackToSim" type="button" onClick="window.location.href='user manual.html'"; style="position:absolute; top:-2.5pt; right:0pt;">User Manual</button>
 </div>
 
-<div id = "InputControls" name="InputControls"
-	style="position:absolute;top:25px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-	<span style ="position:absolute; top:0pt; right:1%;"><font size="-1"> Input Controls </font></span>
-	<button id="rpyBtn" type="button" onClick=btnRpy(); style="position:absolute; top:-2.5pt; left:0pt;">Roll, Pitch & Yaw</button>
-	<button id="pidBtn" type="button" onClick=btnPid(); style="position:absolute; top:-2.5pt; left:90pt;">P-I-D</button>
-	</div>
+<div id="wholeSim" name="wholeSim">
+
+<div id = "InputPanel" name="InputPanel"
+	style="position:absolute;top:25px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 535px; width: 270px; z-index:99;background-color:rgba(0,0,0,0.3);">
+
+<div id = "InputControls" name="InputControls" style="position:absolute;top:0%; left: 0%; height: 20px; width: 100%;">
+<span style ="position:absolute; top:0pt; right:1%;"><font size="-1"><b> Input Controls </b></font></span>
+</div>
+
+<span style ="position:absolute; top:30px; left:10px;">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+
+<div id="tab1focus" class="tab tabfocus" style="display:block;">Degree</div>
+
+<div id="tab1ready" class="tab tabhold" style="display:none;">
+
+<span onClick="ManageTabPanelDisplay('tab1focus','tab2ready','tab3ready','content1')">Degree</span>
+
+</div>
+
+</td>
+
+<td>
+
+<div id="tab2focus" class="tab tabfocus" style="display:none;">Radians</div>
+
+<div id="tab2ready" class="tab tabhold" style="display:block;">
+
+<span onClick="ManageTabPanelDisplay('tab1ready','tab2focus','tab3ready','content2')">Radians</span>
+
+</div>
+
+</td>
+
+<td>
+
+<div id="tab3focus" class="tab tabfocus" style="display:none;">PID</div>
+
+<div id="tab3ready" class="tab tabhold" style="display:block;">
+
+<span onClick="ManageTabPanelDisplay('tab1ready','tab2ready','tab3focus','content3')">PID</span>
+
+</div>
+
+</td>
+
+</tr>
+<tr>
+<td colspan="5">
+
+<div id="content1" class="tabcontent" style="display:block;">
+
 <div id="rpyWindow">
 
-	<div id = "RollWindowTitle" name="RollTitle"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-	<span style ="position:absolute; top:0pt; left:0%;"> Roll </span>
-	</div>
+<div id = "RollWindow" name="Roll"
+	style="position:absolute; bottom: 62%; left: 0px;border: 1px solid #333333; -moz-border-radius : 10px; height: 30%; width: 250px; background-color:rgba(0,0,0,0.3);">
 
-	<div id = "RollWindow" name="Roll"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-
-	<span style ="position:absolute;  top:20pt; left:10%;"> Roll Angle(&deg) </span>
-	<input type="text" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<span style ="position:absolute;  top:15pt; left:5%;"> Roll Angle(&deg) </span>
+	<input type="text" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
-                    || (event.keyCode==46) || (event.keyCode==189) || (event.keyCode==190) )"  size="2" id='rA'; style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
-	</div>
-
-	<div id = "PitchTitle" name="PitchTitle"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-	<span style ="position:absolute; top:0pt; left:0%;"> Pitch </span>
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
+                    || (event.keyCode==46) || (event.keyCode==189) || (event.keyCode==190) )"  size="2" id='rA'; style ="position:absolute;  top:35pt; left:10%;  font-size:20px;" />
 	</div>
 
 	<div id = "PitchWindow" name="Pitch"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;bottom:31%; left: 0;border: 1px solid #333333; -moz-border-radius : 10px; height: 30%; width: 250px; background-color:rgba(0,0,0,0.3);">
 
-	<span style ="position:absolute; top:20pt; left:10%;"> Pitch Angle(&deg) </span>
-	<input type="text" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<span style ="position:absolute; top:15pt; left:5%;"> Pitch Angle(&deg) </span>
+	<input type="text" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
-                    || (event.keyCode==46) || (event.keyCode==189) || (event.keyCode==190) )" size="2" id='pA';  style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
-	</div>
-
-	<div id = "YawTitle" name="YawTitle"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
+                    || (event.keyCode==46) || (event.keyCode==189) || (event.keyCode==190) )" size="2" id='pA';  style ="position:absolute;  top:35pt; left:10%;  font-size:20px;" />
 	</div>
 
 	<div id = "YawWindow" name="Yaw"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;bottom:0%; left: 0;border: 1px solid #333333; -moz-border-radius : 10px; height: 30%; width: 250px; background-color:rgba(0,0,0,0.3);">
 
-	<span style ="position:absolute; top:20pt; left:10%;"> Yaw Angle(&deg) </span>
-	<input type="text" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<span style ="position:absolute; top:15pt; left:5%;"> Yaw Angle(&deg) </span>
+	<input type="text" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
-                    || (event.keyCode==46) || (event.keyCode==189) || (event.keyCode==190) )" size="2" id='yA';  style ="position:absolute;  top:50pt; left:10%;  font-size:20px;" />
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
+                    || (event.keyCode==46) || (event.keyCode==189) || (event.keyCode==190) )" size="2" id='yA';  style ="position:absolute;  top:35pt; left:10%;  font-size:20px;" />
 	</div>
 </div>
 
-<div id="pidWindow" hidden="hidden">
-    <div id = "Div1" name="RollTitle"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
+
+</div>
+
+<div id="content2" class="tabcontent" style="display:none;">
+
+<div id=radiansPanel>
+<p> add stuff for the radians here if we decide to do it </p>
+</div>
+
+</div>
+
+<div id="content3" class="tabcontent" style="display:none;">
+
+	<div id = "Div2" name="Roll"
+	style="position:absolute;bottom:62%; left: 0%;border: 1px solid #333333; -moz-border-radius : 10px; height: 30%; width: 250px; z-index:100;background-color:rgba(0,0,0,0.3);">
+
+<div id = "Div1" name="RollTitle"
+	style="position:absolute;top:0px; left: 0%; height: 20px; width: 250px; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Roll </span>
 	</div>
 
-	<div id = "Div2" name="Roll"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
-	<input id= "RollP" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "RollP" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )"  style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
-	<input id= "RollI" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "RollI" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )"  style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
-	<input id= "RollD" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "RollD" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )"  style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
 
 	</div>
 
+
+	<div id = "Div4" name="Pitch"
+	style="position:absolute;bottom:31%; left: 0%;border: 1px solid #333333; -moz-border-radius : 10px; height: 30%; width: 250px; z-index:100;background-color:rgba(0,0,0,0.3);">
+
 	<div id = "Div3" name="PitchTitle"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:0px; left: 0%; height: 20px; width: 250px; background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:0%;"> Pitch </span>
 	</div>
 
-	<div id = "Div4" name="Pitch"
-	style="position:absolute;top:185px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
-	<input id= "PitchP" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "PitchP" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
-	<input id= "PitchI" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "PitchI" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )"  style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
-	<input id= "PitchD" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "PitchD" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
 
-	</div>
-
-	<div id = "Div5" name="YawTitle"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
 	</div>
 
 	<div id = "Div6" name="Yaw"
-	style="position:absolute;top:320px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 130px; width: 25%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;bottom:0%; left: 0%;border: 1px solid #333333; -moz-border-radius : 10px; height: 30%; width: 250px; background-color:rgba(0,0,0,0.3);">
+
+	<div id = "Div5" name="YawTitle"
+	style="position:absolute;top:0px; left: 0%; height: 20px; width: 250px; background-color:rgba(0,0,0,0.3);">
+	<span style ="position:absolute; top:0pt; left:0%;"> Yaw </span>
+	</div>
+
 	<span style ="position:absolute; top:0pt; left:70pt;"> </span>
-	<input id= "YawP" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "YawP" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )" style ="position:absolute;  top:50pt; right:65%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:77%;"> P </span>
-	<input id= "YawI" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "YawI" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )" style ="position:absolute;  top:50pt; right:35%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:47%;"> I </span>
-	<input id= "YawD" type="text" size="2" onkeydown="return ( event.ctrlKey || event.altKey 
-                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+	<input id= "YawD" type="text" size="2" onKeyDown="return ( event.ctrlKey || event.altKey
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
-                    || (event.keyCode==8) || (event.keyCode==9) 
-                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==8) || (event.keyCode==9)
+                    || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )" style ="position:absolute;  top:50pt; right:5%; font-size:20px;" />
 	<span style ="position:absolute; top:20pt; right:17%;"> D </span>
 
 	</div>
+
 </div>
 
+</td>
+</tr>
+</table>
+</span>
+
+<div id = "Sim" name="Sim"
+style="position:absolute;bottom:2%; left: 10%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:80%; z-index:100;background-color:rgba(0,0,0,0.3);">
+<button type="button" style="position:absolute;top:25%; left: 5%;" onClick=SendAngles();>SEND ANGLES</button>
+</div>
+
+</div>
+
+<div id = "OutputPanel" name="OutputPanel"
+style="position:absolute;top:25px; left: 275;border: 2px solid #333333; -moz-border-radius : 10px; height: 535px; width:720; z-index:100;background-color:rgba(0,0,0,0.3);">
+
 <div id = "OutputControls" name="OutputControls"
-style="position:absolute;top:25px; left: 26%;border: 2px solid #333333; -moz-border-radius : 10px; height: 20px; width: 73%; z-index:100;background-color:rgba(0,0,0,0.3);">
+style="position:absolute;top:0px; left: 0%; height: 20px; width: 100%; z-index:100;">
 <button id="rpyBtn" type="button" onClick=btnVis(); style="position:absolute; top:-2.5pt; left:0pt;">Visualisations</button>
 <button id="pidBtn" type="button" onClick=btnTxt(); style="position:absolute; top:-2.5pt; left:87pt;">Text Output</button>
-<span style ="position:absolute; top:0pt; left:40%;"><font size="-1"><center> Output Controls </center></font></span>
+<span style ="position:absolute; top:0pt; left:40%;"><font size="-1"><center><b> Output Controls </b></center></font></span>
 </div>
 
 <div id="visWindow" name="visWindow">
 
 <div id = "Sim" name="Sim"
-	style="position:absolute;top:50px; left: 50%;border: 2px solid #333333; -moz-border-radius : 10px; height: 500px; width: 500px; z-index:100;background-color:rgba(0,0,0,0.3);">
+	style="position:absolute;top:20px; left: 210px;border: 2px solid #333333; -moz-border-radius : 10px; height: 500px; width: 500px; z-index:100;background-color:rgba(0,0,0,0.3);">
 			<div class="content">
 				<div id="unityPlayer">
 					<div class="missing" >
@@ -267,22 +332,22 @@ style="position:absolute;top:25px; left: 26%;border: 2px solid #333333; -moz-bor
 
 
 	<div id="rollPitchPanel"
-      style="position:absolute;top:55px; left: 26%;border: 2px solid #333333; -moz-border-radius : 10px; height: 200px; width: 200px; z-index:100;background-color:rgba(0,0,0,0.3);">
+      style="position:absolute;top:20px; left: 5px;border: 2px solid #333333; -moz-border-radius : 10px; height: 200px; width: 200px; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<svg id="gNode" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</div>
 
 
 	<div id="yawPanel"
-      style="position:absolute; top:265px; left:26%; border:2px solid #333333; -moz-border-radius : 10px; height: 200px; width: 200px; z-index:100;background-color:rgba(0,0,0,0.3);">
+      style="position:absolute; top:225px; left:5px; border:2px solid #333333; -moz-border-radius : 10px; height: 200px; width: 200px; z-index:100;background-color:rgba(0,0,0,0.3);">
 	<svg id="yawGyro" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	</svg>
 	</div>
 
-<div style="position:absolute; text-align:left; top:265px; left:26%; height: 200px; width: 200px; z-index:100;">
+<div style="position:absolute; text-align:left; top:225px; left:5px; height: 200px; width: 200px; z-index:100;">
 <img src="markers.png" />
 </div>
 
-	<div id = "RPYText" style = "position:absolute; top:475px; text-align:left; left:26%; height: 56px; width: 200px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
+	<div id = "RPYText" style = "position:absolute; top:450px; text-align:left; left:5px; height: 56px; width: 200px; border:1px solid #333333; z-index:100123123121; background-color:rgba(0,0,0,0.3);">
 		<span id="RollSpan" style ="position:absolute; text-align:left; top:0px; z-index:10000"> Current Roll: 0&deg </span>
 		<span id="PitchSpan" style ="position:absolute; text-align:left; top:20px;z-index:10000"> Current Pitch: 0&deg </span>
 		<span id="YawSpan" style ="position:absolute; text-align:left; top:40px;x;z-index:100000"> Current Yaw: 0&deg </span>
@@ -292,25 +357,88 @@ style="position:absolute;top:25px; left: 26%;border: 2px solid #333333; -moz-bor
 
 <div id="txtWindow" name="txtWindow" hidden="hidden">
 
-	<div id = "txt" name="txt" style="position:absolute;top:50px; left: 28%;border: 2px solid #333333; -moz-border-radius : 10px; height: 90%; width: 71%; z-index:100;background-color:rgba(0,0,0,0.3);">
+	<div id = "txt" name="txt" style="position:absolute;top:20px; left: 5px;border: 2px solid #333333; -moz-border-radius : 10px; height: 95%; width: 98%; z-index:100;background-color:rgba(0,0,0,0.3);">
 
-	<textarea id="console" name="console" cols="70" rows="27">
-
-	</textarea><br>
+	<textarea id="console" name="console" cols="70" rows="31"></textarea>
 
 	</div>
 
 </div>
 
-<div id = "Sim" name="Sim"
-style="position:absolute;top:490px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; height: 40px; width:25%; z-index:100;background-color:rgba(0,0,0,0.3);">
-<button type="button" style="position:absolute;top:25%; left: 5%;" onClick=SendAngles();>SEND ANGLES</button>
 </div>
 
 </div>
 
+</div>
 
-	<script>
+<style type="text/css">
+
+#wholeSim{
+width:990px;
+position:absolute;
+left:50%;
+margin-left:-480px;
+}
+
+.tab {
+	font-family: verdana,sans-serif;
+	font-size: 12px;
+	width: 50px;
+	white-space: nowrap;
+	text-align: center;
+	border-style: solid;
+	border-color: black;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-bottom-width: 0px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	cursor: pointer;
+	}
+.tabhold {
+	background-color: white;
+	color: black;
+	}
+.tabfocus {
+	background-color: black;
+	color: white;
+	}
+.tabcontent {
+	font-family: sans-serif;
+	font-size: 14px;
+	background-color: white;
+	width: 250px;
+	height: 325px;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	}
+</style>
+
+<script type="text/javascript" language="JavaScript"><!--
+function ManageTabPanelDisplay() {
+
+var idlist = new Array('tab1focus','tab2focus','tab3focus','tab1ready','tab2ready','tab3ready','content1','content2','content3');
+
+// No other customizations are necessary.
+if(arguments.length < 1) { return; }
+for(var i = 0; i < idlist.length; i++) {
+   var block = false;
+   for(var ii = 0; ii < arguments.length; ii++) {
+      if(idlist[i] == arguments[ii]) {
+         block = true;
+         break;
+         }
+      }
+   if(block) { document.getElementById(idlist[i]).style.display = "block"; }
+   else { document.getElementById(idlist[i]).style.display = "none"; }
+   }
+}
+
 
 	/*
 	Create Login Window
@@ -340,7 +468,7 @@ style="position:absolute;top:490px; left: 0%;border: 2px solid #333333; -moz-bor
 		}
 	}
 
-	
+
 
 	function CreateLoginWindow() {
 		var LoginWindow = document.createElement("div");
@@ -475,8 +603,8 @@ style="position:absolute;top:490px; left: 0%;border: 2px solid #333333; -moz-bor
             YawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
             YawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
             YawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
-            
-            
+
+
         }
         $.ajax({
             type: "POST",
@@ -516,11 +644,11 @@ style="position:absolute;top:490px; left: 0%;border: 2px solid #333333; -moz-bor
     setTimeout(UpdateSimulation, 1000);
 
 
-   function UpdateRollPitchYawSpans(data) {
+    function UpdateRollPitchYawSpans(data) {
     		console.log('updating spans');
 		document.getElementById("RollSpan").innerHTML = "Current Roll: " + data.roll +'&deg';
-		document.getElementById("PitchSpan").innerHTML = "Current Pitch: " + data.pitch +'&deg';
-		document.getElementById("YawSpan").innerHTML = "Current Yaw: " + data.yaw+'&deg';
+		document.getElementById("PitchSpan").innerHTML = "Current Roll: " + data.pitch +'&deg';
+		document.getElementById("YawSpan").innerHTML = "Current Roll: " + data.yaw+'&deg';
     }
 
 	function UpdateAH(data) {
@@ -528,9 +656,7 @@ style="position:absolute;top:490px; left: 0%;border: 2px solid #333333; -moz-bor
 	}
 
 	function UpdateYawIndicator(data) {
-        console.log(data.yaw);
 		pin.setAttribute("transform", "rotate("+ parseInt(data.yaw) +" "+100+" "+100+")");
-	
 	}
 
 
@@ -671,29 +797,6 @@ setInterval ( "doSomething()", 50 );
         mark.setAttribute("transform", "rotate("+ i +" "+100+" "+100+")");
     }
 
-    var yawPivot = true;
-    var yawDegreeMoved = 0;
-    var recievedYaw = -180;//yaw degree returned from JSON can be +/- 360
+//--></script>
 
-//setInterval ("yaw()", 20);
-
-//code for the yaw pin
-function yaw() {
-
-    if(yawPivot){
-		if(recievedYaw > 0){yawDegreeMoved++;}
-		else if(recievedYaw < 0){yawDegreeMoved--;}
-    }
-	
-    if(yawDegreeMoved == recievedYaw){yawPivot = false;}
-    //if(yawDegreeMoved == -recievedYaw){yawPivot = true;}
-
-
-    pin.setAttribute("transform", "rotate("+ yawDegreeMoved +" "+100+" "+100+")");
-
-}
-
-	</script>
-
-	</body>
-</html>
+</body></html>
