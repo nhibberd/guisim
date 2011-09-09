@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public class HardwareLoader implements Runnable {
    private final HardwareEvents hardwareEvents = new HardwareEvents();
@@ -47,6 +48,7 @@ public class HardwareLoader implements Runnable {
    }
 
     private void process(byte[] bytes) {
+        System.out.println(Arrays.toString(bytes));
         Parse parser = new Parse();
         short roll = parser.parseToShort(bytes[0], bytes[1]);
         short pitch = parser.parseToShort(bytes[2], bytes[3]);
