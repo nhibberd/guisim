@@ -53,6 +53,9 @@ public class HardwareLoader implements Runnable {
         short roll = parser.parseToShort(bytes[0], bytes[1]);
         short pitch = parser.parseToShort(bytes[2], bytes[3]);
         short yaw = parser.parseToShort(bytes[4], bytes[5]);
+        System.out.println(roll);
+        System.out.println(pitch);
+        System.out.println(yaw);
         FromHardware event = new FromHardware(roll, pitch, yaw);
         hardwareEvents.put(event);
     }

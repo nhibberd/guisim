@@ -2,6 +2,7 @@ package guisim.server;
 
 import com.google.gson.Gson;
 import guisim.json.Flight;
+import guisim.model.FromGui;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -31,8 +32,12 @@ public class GuiSimServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
         PrintWriter writer = resp.getWriter();
-        Flight flight = gson.fromJson(reader, Flight.class);
-        service.send(flight, device);
-        writer.println("server got " + flight);
+        //Flight flight = gson.fromJson(reader, Flight.class);
+        /*FromGui roll = gson.fromJson(reader, FromGui.class);
+        FromGui pitch = gson.fromJson(reader, FromGui.class);
+        FromGui yaw = gson.fromJson(reader, FromGui.class); */
+        FromGui data = gson.fromJson(reader, FromGui.class);
+        service.send(data, device);
+        //writer.println("server got " + flight);
     }
 }
