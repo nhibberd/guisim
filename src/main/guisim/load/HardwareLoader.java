@@ -12,7 +12,8 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 public class HardwareLoader implements Runnable {
-   private final HardwareEvents hardwareEvents = new HardwareEvents();
+   //private final HardwareEvents hardwareEvents = new HardwareEvents();
+   private final AtomRef hardwareEvents = new AtomRef();
    private final InputStream device;
    private final byte[] workingBuffer = new byte[6];
    private int workingLength = 0;
@@ -57,7 +58,9 @@ public class HardwareLoader implements Runnable {
         System.out.println(pitch);
         System.out.println(yaw);
         FromHardware event = new FromHardware(roll, pitch, yaw);
-        hardwareEvents.put(event);
+        hardwareEvents.set(event);
+        //hardwareEvents.put(event);
+
     }
 
     private int read(byte[] buffer) {

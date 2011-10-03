@@ -1,13 +1,16 @@
 package guisim.load;
 
 import java.util.concurrent.atomic.AtomicReference;
+import guisim.model.FromHardware;
+import guisim.server.ServerException;
 
 public class AtomRef {
-    private AtomRef(){
-        //dunno
-    }
+    private static final AtomicReference<FromHardware> events = new AtomicReference<FromHardware>();
 
-    public static void todo(){
-        AtomicReference haha = new AtomicReference();
+    public void set(FromHardware f) {
+        events.set(f);
+    }
+    public FromHardware get() {
+        return events.get();
     }
 }
