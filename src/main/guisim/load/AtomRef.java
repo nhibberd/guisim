@@ -11,6 +11,11 @@ public class AtomRef {
         events.set(f);
     }
     public FromHardware get() {
-        return events.get();
+        //return events.get();
+        try {
+            return events.get();
+        } catch (NullPointerException e) {
+            throw new ServerException(e);
+        }
     }
 }

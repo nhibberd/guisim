@@ -683,7 +683,7 @@ for(var i = 0; i < idlist.length; i++) {
             dataType: 'json',
             data: JSON.stringify(packet),
             complete: function (data) {
-              console.log("Sent RPY -> " + packet.pitch + "__" + packet.roll + "___" + packet.yaw);
+              console.log("Sent RPY -> " +  packet.roll + "__" + packet.pitch +  "___" + packet.yaw);
               //console.log("Sent PIDs -> " + packet.RollP + "__" + packet.RollI + "___" + packet.RollD);
             }
         });
@@ -697,7 +697,7 @@ for(var i = 0; i < idlist.length; i++) {
                 dataType: 'json',
                 data: {},
                 success: function (data) {
-                  /*console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);*/
+                  console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);
                   unity.SendMessage("MyObject", "gRoll", data.roll);
                   unity.SendMessage("MyObject", "gPitch", data.pitch);
                   unity.SendMessage("MyObject", "gYaw", data.yaw);
@@ -719,7 +719,7 @@ for(var i = 0; i < idlist.length; i++) {
 
     function UpdateConsole(data) {
 	var console = document.getElementById("console")
-	if(console) { console.value = " Roll: " + data.roll +'°' + " \tPitch: " + data.pitch +'°' + " \tYaw: " + data.yaw+'°'; }
+	if(console) { console.value = " Roll: " + data.roll +'ï¿½' + " \tPitch: " + data.pitch +'ï¿½' + " \tYaw: " + data.yaw+'ï¿½'; }
     }
 
     function CheckBoundaries() {
@@ -780,9 +780,9 @@ for(var i = 0; i < idlist.length; i++) {
 
     function UpdateRollPitchYawSpans(data) {
 
-		document.getElementById("RollSpan").innerHTML = "Current Roll: " + data.roll +'°';
-		document.getElementById("PitchSpan").innerHTML = "Current Roll: " + data.pitch +'°';
-		document.getElementById("YawSpan").innerHTML = "Current Roll: " + data.yaw+'°';
+		document.getElementById("RollSpan").innerHTML = "Current Roll: " + data.roll +'ï¿½';
+		document.getElementById("PitchSpan").innerHTML = "Current Roll: " + data.pitch +'ï¿½';
+		document.getElementById("YawSpan").innerHTML = "Current Roll: " + data.yaw+'ï¿½';
     }
 
 	function UpdateAH(data) {

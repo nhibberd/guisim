@@ -16,6 +16,7 @@ public class GuiSimService {
     private final AtomRef events = new AtomRef();
 
     public Flight poll() {
+        System.out.println("123");
         FromHardware next = events.get();
         Flight flight = new Flight();
         flight.roll = next.roll;
