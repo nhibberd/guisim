@@ -1,7 +1,7 @@
 package guisim.model;
 
 public class Parse {
-    public FromGui datapoint(byte[] data) {
+    /*public FromGui datapoint(byte[] data) {
         if (data.length != 8)
             throw new IllegalArgumentException("Invalid length, datapoint must be 8 bytes");
         short degrees = parseToShort(data[0], data[1]);
@@ -9,7 +9,7 @@ public class Parse {
         short i = parseToShort(data[4], data[5]);
         short d = parseToShort(data[6], data[7]);
         return new FromGui(degrees, p, i, d);
-    }
+    } */
 
     public FromHardware datapointFromHardware(byte[] data) {
         if (data.length != 8)

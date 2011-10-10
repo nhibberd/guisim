@@ -60,7 +60,6 @@ public class HardwareLoader implements Runnable {
         FromHardware event = new FromHardware(roll, pitch, yaw);
         hardwareEvents.set(event);
         //hardwareEvents.put(event);
-
     }
 
     private int read(byte[] buffer) {

@@ -16,7 +16,6 @@ public class GuiSimService {
     private final AtomRef events = new AtomRef();
 
     public Flight poll() {
-        System.out.println("123");
         FromHardware next = events.get();
         Flight flight = new Flight();
         flight.roll = next.roll;
@@ -30,17 +29,17 @@ public class GuiSimService {
         byte[] outputData = new byte[24];
 
         System.arraycopy(parse.parseToBytes( data.roll),0,outputData,0,2);
-        System.arraycopy(parse.parseToBytes( data.RollP),0,outputData,2,2);
-        System.arraycopy(parse.parseToBytes( data.RollI),0, outputData, 4, 2);
-        System.arraycopy(parse.parseToBytes( data.RollD),0, outputData, 6, 2);
+        System.arraycopy(parse.parseToBytes( data.rollP),0,outputData,2,2);
+        System.arraycopy(parse.parseToBytes( data.rollI),0, outputData, 4, 2);
+        System.arraycopy(parse.parseToBytes( data.rollD),0, outputData, 6, 2);
         System.arraycopy(parse.parseToBytes( data.pitch),0,outputData,8,2);
-        System.arraycopy(parse.parseToBytes( data.PitchP),0,outputData,10,2);
-        System.arraycopy(parse.parseToBytes( data.PitchI),0, outputData, 12, 2);
-        System.arraycopy(parse.parseToBytes( data.PitchD),0, outputData, 14, 2);
+        System.arraycopy(parse.parseToBytes( data.pitchP),0,outputData,10,2);
+        System.arraycopy(parse.parseToBytes( data.pitchI),0, outputData, 12, 2);
+        System.arraycopy(parse.parseToBytes( data.pitchD),0, outputData, 14, 2);
         System.arraycopy(parse.parseToBytes( data.yaw),0,outputData,16,2);
-        System.arraycopy(parse.parseToBytes( data.YawP),0,outputData, 18,2);
-        System.arraycopy(parse.parseToBytes( data.YawI),0, outputData, 20, 2);
-        System.arraycopy(parse.parseToBytes( data.YawD),0, outputData, 22, 2);
+        System.arraycopy(parse.parseToBytes( data.yawP),0,outputData, 18,2);
+        System.arraycopy(parse.parseToBytes( data.yawI),0, outputData, 20, 2);
+        System.arraycopy(parse.parseToBytes( data.yawD),0, outputData, 22, 2);
 
         System.out.println(outputData);
         System.out.println(Arrays.toString(outputData));
