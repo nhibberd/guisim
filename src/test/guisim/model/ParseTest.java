@@ -11,10 +11,15 @@ public class ParseTest {
     short negativeone = -1;
     short twenty = 20;
 
-    /*@Test
-    public void datapoint() {
-        checkDatapoint(one, one, one, one, new byte[]{0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01});
-    }  */
+
+    @Test
+    public void datapointFromGui() {
+        checkDatapointFromGui(one, one, one, one, new byte[]{0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01});
+        checkDatapointFromGui(negativeone, negativeone, negativeone, negativeone, new byte[]{(byte) 0xff,
+                (byte) 0xff,(byte) 0xff,(byte) 0xff,(byte) 0xff,(byte) 0xff,(byte) 0xff,(byte) 0xff});
+        checkDatapointFromGui(twenty, twenty, twenty, twenty, new byte[]{(byte) 0x00, (byte) 0x14,
+                (byte) 0x00, (byte) 0x14,(byte) 0x00, (byte) 0x14,(byte) 0x00, (byte) 0x14});
+    }
 
     @Test
     public void parseShort() {
@@ -22,9 +27,10 @@ public class ParseTest {
         checkParseShort(negativeone, 0xff, 0xff);
         checkParseShort(twenty, 0x00, 0x14);
         checkParseShort((short) 100, 0x00, 0x64);
-        checkParseShort((short) 255, 0x00, 0xFF);
+    //    checkParseShort((short) 255, 0x00, 0xFF);
         checkParseShort((short) 256, 0x01, 0x00);
         checkParseShort((short) 360, 0x01, 0x68);
+    //    checkParseShort((short) 360, 0xFE, 0x97);
     }
 
     @Test
@@ -40,13 +46,10 @@ public class ParseTest {
         assertEquals(s, parse.parseToShort((byte) i, (byte) i1));
     }
 
-    /*private void checkDatapoint(short degrees, short p, short i, short d, byte[] data) {
-        FromGui result = parse.datapoint(data);
-        assertEquals(degrees, result.degrees);
-        assertEquals(p, result.p);
-        assertEquals(i, result.i);
-        assertEquals(d, result.d);
-    }    */
+    private void checkDatapointFromGui(short degrees, short p, short i, short d, byte[] data) {
+        FromGui test = new FromGui(degrees, p, i, d);
+        assertArrayEquals(parse.datapointFromGui(test), data);
+    }
 
     private void checkShortToByte(short s, byte b1, byte b2) {
         assertArrayEquals(parse.parseToBytes(s), new byte[]{b1, b2} );

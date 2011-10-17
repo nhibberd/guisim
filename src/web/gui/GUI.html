@@ -777,23 +777,23 @@ for(var i = 0; i < idlist.length; i++) {
 	    document.getElementById("InputPanel").hidden = "";
 	    
 	var packet = {
-		r : {
-			roll:  0,
-			rollP : 0,
-			rollI : 0,
-			rollD : 0
+		roll : {
+			deg:  0,
+			P : 0,
+			I : 0,
+			D : 0
 		},
-		p :{
-			pitch:  0,
-			pitchP : 0,
-			pitchI : 0,
-			pitchD : 0
+		pitch :{packet
+			deg:  0,
+			P : 0,
+			I : 0,
+			D : 0
 		},
-		y :{
-			yaw: -1,
-			yawP : 0,
-			yawI : 0,
-			yawD : 0
+		yaw :{
+			deg:  0,
+			P : 0,
+			I : 0,
+			D : 0
 		}
 	}
 		
@@ -896,23 +896,23 @@ for(var i = 0; i < idlist.length; i++) {
         }
 */
 	var packet = {
-		r : {
-			roll:  parseInt(sendingRoll,10) ? parseInt(rollV.value,10) : 0,
-			rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):0,
-			rollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :0,
-			rollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) :0
+		roll : {
+			deg:  parseInt(sendingRoll,10) ? parseInt(rollV.value,10) : 0,
+			P : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):0,
+			I : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :0,
+			D : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) :0
 		},
-		p :{
-			pitch:  parseInt(pitchV.value,10) ? parseInt(pitchV.value,10) : 0,
-			pitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):0,
-			pitchI : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):0,
-			pitchD : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):0
+		pitch :{
+			deg:  parseInt(pitchV.value,10) ? parseInt(pitchV.value,10) : 0,
+			P : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):0,
+			I : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):0,
+			D : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):0
 		},
-		y :{
-			yaw: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
-			yawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
-			yawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
-			yawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
+		yaw :{
+			deg: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
+			P : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
+			I : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
+			D : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
 		}
 	}
 
@@ -973,7 +973,7 @@ for(var i = 0; i < idlist.length; i++) {
 	//if (data.yaw == "") { yawPrint = "No Yaw"}
 	//else { yawPrint = data.yaw + "°"; }
 	
-	if(console) { console.value += " Roll: " + data.roll +'°' + " \tPitch: " + data.pitch +'°' + " \tYaw: " + data.yaw +'°\n'; }
+	if(console) { console.value += " Roll: " + data.roll +'&deg' + " \tPitch: " + data.pitch +'&deg' + " \tYaw: " + data.yaw +'&deg\n'; }
     }
 
     function CheckBoundaries() {

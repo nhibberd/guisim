@@ -2,7 +2,7 @@ package guisim.model;
 
 public class Parse {
     public byte[] datapointFromGui(FromGui data) {
-        byte[] outputData = new byte[6];
+        byte[] outputData = new byte[8];
         System.arraycopy(parseToBytes( data.deg ),0,outputData,0,2);
         System.arraycopy(parseToBytes( data.P ),0,outputData,2,2);
         System.arraycopy(parseToBytes( data.I ),0, outputData, 4, 2);
