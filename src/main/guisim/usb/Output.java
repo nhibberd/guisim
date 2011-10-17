@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface Output {
-    public OutputStream write(OutputStream device);
+    public void write(OutputStream device);
+    public OutputStream get();
     public OutputStream start() throws NoSuchPortException, IOException;
 }

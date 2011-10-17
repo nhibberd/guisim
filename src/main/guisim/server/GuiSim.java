@@ -21,6 +21,7 @@ import java.util.Enumeration;
 public class GuiSim {
     private static final Foils foils = new DefaultFoils();
     private static final Configs c = new DefaultConfigs();
+    private static Output device;
 
     static Enumeration	      portList;
     static CommPortIdentifier portId;
@@ -48,18 +49,16 @@ public class GuiSim {
 		}
 
         //TODO: change to output interface
-        Output usb;
-        usb = new HardwareOutput();
-        //Usb usb = new Usb();
-        OutputStream device = null;
+        Output usb = null;
+        OutputStream stream = null;
         try {
-            device = usb.start();
+            assert false;
+            device.write(usb.start());
         } catch (NoSuchPortException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        usb.write(device);
 
         Config config = c.compound(
            c.servlet("/guisim", "/*", new GuiSimServlet(device)),

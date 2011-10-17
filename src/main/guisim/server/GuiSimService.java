@@ -4,6 +4,7 @@ import guisim.json.Flight;
 import guisim.load.HardwareEvents;
 import guisim.model.FromGuiObjects;
 import guisim.model.FromHardware;
+import guisim.usb.Output;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,7 +24,7 @@ public class GuiSimService {
         return flight;
     }
 
-    public void send(FromGuiObjects data, OutputStream device) throws IOException {
+    public void send(FromGuiObjects data, Output output) throws IOException {
         //TODO: fix this
 
         byte[] outputData = new byte[24];
@@ -32,6 +33,6 @@ public class GuiSimService {
         System.arraycopy( data.yaw.compactParse(),0,outputData,16,8);
 
         System.out.println(Arrays.toString(outputData));
-        device.write(outputData);
+        output.get().write(outputData);
     }
 }

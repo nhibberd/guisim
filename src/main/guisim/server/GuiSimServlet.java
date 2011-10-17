@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import guisim.json.Flight;
 import guisim.model.FromGui;
 import guisim.model.FromGuiObjects;
+import guisim.usb.Output;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -16,10 +17,12 @@ import java.util.concurrent.atomic.AtomicReference;
 public class GuiSimServlet extends HttpServlet {
     private final GuiSimService service = new GuiSimService();
     private final Gson gson = new Gson();
-    private OutputStream device;
+    private Output device;
+   /* private OutputStream device;
 
-    public GuiSimServlet(OutputStream device) {
-        this.device = device;
+    //public GuiSimServlet(OutputStream device) { */
+    public GuiSimServlet(Output output) {
+        this.device = output;
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

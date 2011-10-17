@@ -8,7 +8,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class HardwareOutput implements Output {
-    public OutputStream write(OutputStream device) {
+
+    private OutputStream device;
+
+    public void write(OutputStream asd) {
+        this.device = asd;
+    }
+
+    public OutputStream get() {
         return device;
     }
 

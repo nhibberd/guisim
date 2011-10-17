@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class SyntheticOutput implements Output {
+
     public OutputStream write(OutputStream device) {
-        return device;
+        return null;
     }
 
     public OutputStream start() throws NoSuchPortException, IOException {
