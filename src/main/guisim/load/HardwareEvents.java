@@ -1,28 +1,17 @@
 package guisim.load;
 
-import guisim.model.FromHardware;
-import guisim.server.ServerException;
+import java.util.concurrent.atomic.AtomicReference;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import guisim.model.FromHardware;
 
 public class HardwareEvents {
-    // This is static so that there is only ever one set of events shared between everything.
-    private static final BlockingQueue<FromHardware> events = new LinkedBlockingQueue<FromHardware>();
+    private static final AtomicReference<FromHardware> events = new AtomicReference<FromHardware>();
 
-    public void put(FromHardware f) {
-        try {
-            events.put(f);
-        } catch (InterruptedException e) {
-            throw new ServerException(e);
-        }
+    public void set(FromHardware data) {
+        events.set(data);
     }
-
-    public FromHardware next() {
-        try {
-            return events.take();
-        } catch (InterruptedException e) {
-            throw new ServerException(e);
-        }
+    public FromHardware get() {
+        FromHardware result = events.get();
+        return result != null ? result : new FromHardware((short) 0,(short) 0,(short) 0);
     }
 }

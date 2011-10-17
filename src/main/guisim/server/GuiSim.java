@@ -2,7 +2,8 @@ package guisim.server;
 
 
 
-import com.sun.org.apache.bcel.internal.util.ClassPath;
+import guisim.usb.HardwareOutput;
+import guisim.usb.Output;
 import guisim.usb.Usb;
 import io.mth.foil.j.Foil;
 import io.mth.foil.j.Config;
@@ -16,7 +17,6 @@ import gnu.io.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
-import java.util.HashSet;
 
 public class GuiSim {
     private static final Foils foils = new DefaultFoils();
@@ -47,8 +47,10 @@ public class GuiSim {
 			System.err.println(e + " thrown while loading " + "gnu.io.RXTXCommDriver");
 		}
 
-
-        Usb usb = new Usb();
+        //TODO: change to output interface
+        Output usb;
+        usb = new HardwareOutput();
+        //Usb usb = new Usb();
         OutputStream device = null;
         try {
             device = usb.start();
@@ -57,6 +59,7 @@ public class GuiSim {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        usb.write(device);
 
         Config config = c.compound(
            c.servlet("/guisim", "/*", new GuiSimServlet(device)),

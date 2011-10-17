@@ -1,12 +1,9 @@
 package guisim.server;
 
 import guisim.json.Flight;
-import guisim.load.AtomRef;
 import guisim.load.HardwareEvents;
-import guisim.model.FromGui;
 import guisim.model.FromGuiObjects;
 import guisim.model.FromHardware;
-import guisim.model.Parse;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,7 +11,7 @@ import java.util.Arrays;
 
 public class GuiSimService {
     //private final HardwareEvents events = new HardwareEvents();
-    private final AtomRef events = new AtomRef();
+    private final HardwareEvents events = new HardwareEvents();
 
     public Flight poll() {
         FromHardware next = events.get();

@@ -1,11 +1,10 @@
 package guisim.server;
 
-import guisim.json.Flight;
-import guisim.load.HardwareEvents;
+import guisim.load.SyntheticHardwareEvents;
 import guisim.model.FromHardware;
 
 public class DataLoaderService {
-    private final HardwareEvents hardwareEvents = new HardwareEvents();
+    private final SyntheticHardwareEvents hardwareEvents = new SyntheticHardwareEvents();
 
     public void store(String data) {
         for (String first : data.split(",")){

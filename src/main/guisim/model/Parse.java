@@ -9,7 +9,7 @@ public class Parse {
         short i = parseToShort(data[4], data[5]);
         short d = parseToShort(data[6], data[7]);
         return new FromGui(degrees, p, i, d);
-    } */
+    }*/
 
     public FromHardware datapointFromHardware(byte[] data) {
         if (data.length != 6)
@@ -20,7 +20,6 @@ public class Parse {
         return new FromHardware(roll, pitch, yaw);
     }
 
-    //TODO: parse >156 digit
     public short parseToShort(byte b1, byte b2) {
         return (short) ((b1 << 8) | b2);
     }

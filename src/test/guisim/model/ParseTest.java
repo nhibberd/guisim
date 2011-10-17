@@ -21,7 +21,10 @@ public class ParseTest {
         checkParseShort(one, 0x00, 0x01);
         checkParseShort(negativeone, 0xff, 0xff);
         checkParseShort(twenty, 0x00, 0x14);
-        checkParseShort((short) 360, 0xFE, 0x97);
+        checkParseShort((short) 100, 0x00, 0x64);
+        checkParseShort((short) 255, 0x00, 0xFF);
+        checkParseShort((short) 256, 0x01, 0x00);
+        checkParseShort((short) 360, 0x01, 0x68);
     }
 
     @Test

@@ -2,18 +2,14 @@ package guisim.load;
 
 import guisim.model.FromHardware;
 import guisim.model.Parse;
-import scalaz.Input;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 public class HardwareLoader implements Runnable {
    //private final HardwareEvents hardwareEvents = new HardwareEvents();
-   private final AtomRef hardwareEvents = new AtomRef();
+   private final HardwareEvents hardwareEvents = new HardwareEvents();
    private final InputStream device;
    private final byte[] workingBuffer = new byte[6];
    private int workingLength = 0;
