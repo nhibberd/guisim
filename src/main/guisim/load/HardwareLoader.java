@@ -40,39 +40,26 @@ public class HardwareLoader implements Runnable {
                process(workingBuffer);
                workingLength = 0;
           }
-           // copy the left over read bytes into the working buffer
-           /*if (newLength  < readLength) {
-             workingLength = readLength - newLength;
-             System.arraycopy(readBuffer, newLength, workingBuffer, 0, newLength);
-          } */
        }
    }
 
     private void process(byte[] bytes) {
-
-
-
         System.out.println(Arrays.toString(bytes));
         Parse parser = new Parse();
 
-        //FromHardware event = parser.datapointFromHardware(bytes);
+        FromHardware event = parser.datapointFromHardware(bytes);
 
+        /*
+        //TODO: for testing
         short roll = parser.parseToShort(bytes[0], bytes[1]);
         short pitch = parser.parseToShort(bytes[2], bytes[3]);
         short yaw = parser.parseToShort(bytes[4], bytes[5]);
         System.out.println(roll);
         System.out.println(pitch);
         System.out.println(yaw);
-        //TODO: ian fix pitch * 1
+       FromHardware event = new FromHardware(roll, pitch, yaw);     */
 
-        short haha = (short) (pitch * (short) -1);
-        System.out.println("||negpitch||" + haha);
-
-        short haha2 = (short) (yaw * (short) -1);
-
-        FromHardware event = new FromHardware(roll, haha, haha2);
         hardwareEvents.set(event);
-        //hardwareEvents.put(event);
     }
 
     private int read(byte[] buffer) {

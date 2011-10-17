@@ -3,6 +3,7 @@ package guisim.server;
 import com.google.gson.Gson;
 import guisim.json.Flight;
 import guisim.model.FromGui;
+import guisim.model.FromGuiObjects;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -36,7 +37,7 @@ public class GuiSimServlet extends HttpServlet {
         /*FromGui roll = gson.fromJson(reader, FromGui.class);
         FromGui pitch = gson.fromJson(reader, FromGui.class);
         FromGui yaw = gson.fromJson(reader, FromGui.class); */
-        FromGui data = gson.fromJson(reader, FromGui.class);
+        FromGuiObjects data = gson.fromJson(reader, FromGuiObjects.class);
         service.send(data, device);
         //writer.println("server got " + flight);
     }

@@ -12,8 +12,8 @@ public class Parse {
     } */
 
     public FromHardware datapointFromHardware(byte[] data) {
-        if (data.length != 8)
-            throw new IllegalArgumentException("Invalid length, datapoint must be 8 bytes");
+        if (data.length != 6)
+            throw new IllegalArgumentException("Invalid length, datapoint must be 6 bytes");
         short roll = parseToShort(data[0], data[1]);
         short pitch = parseToShort(data[2], data[3]);
         short yaw = parseToShort(data[4], data[5]);

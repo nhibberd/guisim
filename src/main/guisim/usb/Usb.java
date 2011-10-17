@@ -18,22 +18,11 @@ public class Usb {
 		{
 			System.err.println(e + " thrown while loading " + "gnu.io.RXTXCommDriver");
 		}
-        /*
-        String driverName = "com.sun.comm.Win32Driver";
-        try{
-            CommDriver commdriver =
-                    (CommDriver)Class.forName(driverName).newInstance();
-            commdriver.initialize();
-        }
-        catch (Exception e2){
-            e2.printStackTrace();
-        }*/
-
 
         CommPortIdentifier communicationPort = null;
         String thisPort = "COM3";
         try{
-            communicationPort = CommPortIdentifier.getPortIdentifier(thisPort);  //arduino ID/name?
+            communicationPort = CommPortIdentifier.getPortIdentifier(thisPort);
         } catch(NoSuchPortException e) {
             //error
             System.err.println("No such port " + thisPort);

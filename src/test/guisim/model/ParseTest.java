@@ -21,7 +21,6 @@ public class ParseTest {
         checkParseShort(one, 0x00, 0x01);
         checkParseShort(negativeone, 0xff, 0xff);
         checkParseShort(twenty, 0x00, 0x14);
-        //checkParseShort((short) -360, 0xFC, 0x98);
         checkParseShort((short) 360, 0xFE, 0x97);
     }
 
@@ -31,6 +30,7 @@ public class ParseTest {
         checkShortToByte((short) -1, (byte) 0xff, (byte) 0xff);
         checkShortToByte((short) 20, (byte) 0x00, (byte) 0x14);
         checkShortToByte((short) 360, (byte) 0x01, (byte) 0x68);
+       // checkShortToByte((short) 360, (byte) 0xFE, (byte) 0x97);
     }
 
     private void checkParseShort(short s, int i, int i1) {
