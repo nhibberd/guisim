@@ -1,13 +1,13 @@
 package guisim.model;
 
 public class FromGuiObjects {
-    public final FromGui roll;
-    public final FromGui pitch;
-    public final FromGui yaw;
+    public final FromGui r;
+    public final FromGui p;
+    public final FromGui y;
 
     public FromGuiObjects(FromGui roll, FromGui pitch, FromGui yaw) {
-        this.roll = roll;
-        this.pitch = pitch;
-        this.yaw = yaw;
+        this.r = roll;
+        this.p = pitch;
+        this.y = yaw;
     }
 }

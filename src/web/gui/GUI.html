@@ -164,8 +164,8 @@ function SavePID() {
 commands in degrees within the given ranges:
 	<br /><br />
 		<ul>
-			<li>Roll & Pitch : -20ï¿½ to 20ï¿½</li>
-			<li>Yaw : 0ï¿½ to 360ï¿½</li>
+			<li>Roll & Pitch : -20° to 20°</li>
+			<li>Yaw : 0° to 360°</li>
 		</ul>
 	<br />
 	Any violations of inputs outside the given range will be automatically read as the 
@@ -199,7 +199,7 @@ left to right) mark out 0 degrees, 30 degrees, 60 degrees and 90 degrees.</li>
 	 			<li id="yawDescription" style="margin-bottom:10px;">
 	The Yaw Panel (Heading Indicator) displays the current yaw readings received from the 
 
-hardware model. Each marking represents 10ï¿½. The Zero markings corresponds to the line marked on 
+hardware model. Each marking represents 10°. The Zero markings corresponds to the line marked on 
 
 both the hardware model and the simulated model representation.
 	<br /><br />
@@ -263,15 +263,21 @@ left mouse button and moving the mouse.</li>
 
 
 <div id = "Title" name="Title"
-style="position:absolute; top:0px; color:white; left:0px; border:2px solid #333333; fontSize:40px; -moz-border-radius : 10px; border-radius : 10px; height: 45px; width: 995; z-index:100; background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
+style="position:absolute; top:0px; color:white; left:0px; border:2px solid #333333; fontSize:40px; -moz-border-radius : 10px; border-radius : 10px; height: 30px; width: 995; z-index:100; background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
 background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
-<center>
-<font size="16" >3DOF Simulator</font></center>
-<button id="BackToSim" type="button" onClick=btnMan(); style="position:absolute; top:-3px; right:0px;">User Manual</button>
+<center><font size="5" >3DOF Simulator</font></center>
+<button id="BackToSim" type="button" onClick=btnMan(); style="position:absolute; top:1px; right:0px;">User Manual</button>
 </div>
 
-<div id = "InputPanel" name="InputPanel"
-	style="position:absolute;top:50px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; border-radius : 10px; height: 535px; width: 270px; z-index:99;background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
+<div id="defaultInputPanel" style="position:absolute; top:45px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; border-radius : 10px; height: 535px; width: 270px; z-index:99;background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
+
+<button id="start" type="button" onClick=startBtn(); style="position:absolute; top:50%; left:80px;">Ready Simulation</button>
+
+</div>
+
+<div id = "InputPanel" hidden = "hidden" name="InputPanel"
+	style="position:absolute;top:45px; left: 0%;border: 2px solid #333333; -moz-border-radius : 10px; border-radius : 10px; height: 535px; width: 270px; z-index:99;background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
 background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
 
 <div id = "InputControls" name="InputControls" style="position:absolute;top:0%; left: 0%; height: 20px; width: 100%;">
@@ -481,7 +487,7 @@ style="position:absolute;bottom:10px; left: 10px;border: 2px solid #333333; -moz
 </div>
 
 <div id = "OutputPanel" name="OutputPanel"
-style="position:absolute;top:50px; left: 275;border: 2px solid #333333; -moz-border-radius : 10px; border-radius : 10px; height: 535px; width:720px; z-index:100;background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
+style="position:absolute;top:45px; left: 275;border: 2px solid #333333; -moz-border-radius : 10px; border-radius : 10px; height: 535px; width:720px; z-index:100;background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
 background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
 
 <div id = "OutputControls" name="OutputControls"
@@ -553,7 +559,7 @@ background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
 
 </div>
 
-<div id="background" style="position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:0; background-color:#00000C;"></div>
+<div id="background" style="position:absolute; top:0px; left:0px; width:100%; height:700px; z-index:0; background-color:#00000C;"></div>
 
 </div>
 
@@ -765,25 +771,54 @@ for(var i = 0; i < idlist.length; i++) {
 
 	}
 
+	function startBtn(){
+	
+		document.getElementById("defaultInputPanel").hidden = "hidden";
+	    document.getElementById("InputPanel").hidden = "";
+	    
+	var packet = {
+		r : {
+			roll:  0,
+			rollP : 0,
+			rollI : 0,
+			rollD : 0
+		},
+		p :{
+			pitch:  0,
+			pitchP : 0,
+			pitchI : 0,
+			pitchD : 0
+		},
+		y :{
+			yaw: -1,
+			yawP : 0,
+			yawI : 0,
+			yawD : 0
+		}
+	}
+		
+		
+        $.ajax({
+            type: "POST",
+            url: "/guisim/",
+            dataType: 'json',
+            data: JSON.stringify(packet),
+            complete: function (data) {
+
+            }
+        });
+	}
+
 	//Use this function to add text to the console output window
 	function addConsoleText(string) {
 		var console = document.getElementById("console");
 		console.value += "\n " + string;
 	}
 
-
-
 	function CheckLock() {
 
 		var roll = document.getElementById("rA");
 		var yaw = document.getElementById("yA");
-		
-		//-----------------------------------------------------------------------------------------------------------//
-		//NEED TO FIX SOME OF THE LOGICS UP 
-		//	IF 1 VALUE IS ENTERED INTO ROLL/YAW AND SENT, ANOTHER VALUE CAN BE ENTERED INTO THE OTHER DEGREE IN THE NEXT COMMAND 
-		//  DEPENDING ON WHAT WAS ENTERED FOR THE SECOND COMMAND - 1 OR THE OTHER DEGREE WILL BE LOCKED FOR THE THIRD COMMAND
-		// 	IF THE SECOND COMMAND VALUE FOR EITHER ROLL/YAW WAS THE SAME FOR THE FIRST COMMAND OF IT'S OPPOSITE DEGREE- BOTH YAW AND ROLL CAN BE CHANGED DURING THE THIRD COMMAND
-		//-----------------------------------------------------------------------------------------------------------//
 		
 		if(roll.value != "") {
 			roll.disabled = false;
@@ -814,39 +849,40 @@ for(var i = 0; i < idlist.length; i++) {
 		pitchV = document.getElementById("pA");
 		yawV = document.getElementById("yA");
 		
+		var printingRoll;
 		var printingYaw;
+		var sendingRoll;
 		var sendingYaw;
 		
-		if (yawV.value == ""){ printingYaw = "No yaw value"; }
-		else { printingYaw = yawV.value; }
 		
-		if (yawV.value == ""){ sendingYaw = -1; }
-		else { sendingYaw = yawV.value; }
+		//if yaw and roll is not entered -> yaw is 0 and roll is 0 but that gets disregarded (set to 0 so that it's not null)
+		if(yawV.value == "" && rollV.value == ""){
+			yawV.value = 0, //rollV.value = 0;//roll will not be read so it doesn't matter what it is...as long as it's not null
+			printingRoll = "No roll value"; printingYaw = yawV.value; 
+			sendingYaw = yawV.value; sendingRoll = 0;
+			
+		//if roll is entered and yaw isn't -> roll is the entered value and yaw is -1
+		}else if (yawV.value == "" && rollV.value != ""){
+			printingYaw = "No yaw value"; printingRoll = rollV.value;
+			sendingYaw = -1; sendingRoll = rollV.value;
+			
+		//if yaw is entered and roll isn't -> roll is set to 0 (once again; set to 0 so it's not null) and yaw is the entered value 
+		}else if (yawV.value != "" && rollV.value == ""){
+			//rollV.value = 0;//roll will not be read so it doesn't matter what it is...as long as it's not null
+			printingRoll = "No roll value"; printingYaw = yawV.value; 
+			sendingYaw = yawV.value; sendingRoll = 0;
+		}
 		
-		alert('Sent:\n	Roll = ' + rollV.value + '\n	Pitch = ' + pitchV.value + '\n	Yaw = ' +  printingYaw);
+		alert("\tSent Values:\nRoll = " + printingRoll + "\nPitch = " + pitchV.value + "\nYaw = " +  printingYaw);
 /*
+		
+		//keep this just in case mine is wrong
+		
         var packet = {
-            pitch:  parseInt(document.getElementById("pA").value,10) ? parseInt(document.getElementById("pA").value,10) : -1,
-            roll:  parseInt(document.getElementById("rA").value,10) ? parseInt(document.getElementById("rA").value,10) : -1,
+            pitch:  parseInt(document.getElementById("pA").value,10) ? parseInt(document.getElementById("pA").value,10) : 0,
+            roll:  parseInt(document.getElementById("rA").value,10) ? parseInt(document.getElementById("rA").value,10) :0,
             yaw: parseInt(document.getElementById("yA").value,10) ? parseInt(document.getElementById("yA").value,10) : -1,
-            rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):-1,
-            rollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :-1,
-            rollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) : -1,
-            pitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):-1,
-            pitchI : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):-1,
-            pitchD : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):-1,
-            yawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):-1,
-            yawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):-1,
-            yawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):-1
-
-
-        }
-*/
-		var packet = {
-            pitch:  parseInt(pitchV.value,10) ? parseInt(pitchV.value,10) : 0,
-            roll:  parseInt(rollV.value,10) ? parseInt(rollV.value,10) : 0,
-            yaw: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
-            rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10) :0,
+            rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):0,
             rollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :0,
             rollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) : 0,
             pitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):0,
@@ -858,6 +894,29 @@ for(var i = 0; i < idlist.length; i++) {
 
 
         }
+*/
+	var packet = {
+		r : {
+			roll:  parseInt(sendingRoll,10) ? parseInt(rollV.value,10) : 0,
+			rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):0,
+			rollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :0,
+			rollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) :0
+		},
+		p :{
+			pitch:  parseInt(pitchV.value,10) ? parseInt(pitchV.value,10) : 0,
+			pitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):0,
+			pitchI : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):0,
+			pitchD : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):0
+		},
+		y :{
+			yaw: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
+			yawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
+			yawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
+			yawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
+		}
+	}
+
+	console.log(packet);
 		
         $.ajax({
             type: "POST",
@@ -865,8 +924,9 @@ for(var i = 0; i < idlist.length; i++) {
             dataType: 'json',
             data: JSON.stringify(packet),
             complete: function (data) {
-              console.log("Sent RPY -> " + packet.pitch + "__" + packet.roll + "___" + packet.yaw);
-              console.log("Sent PIDs -> " + packet.RollP + "__" + packet.RollI + "___" + packet.RollD);
+              
+              //console.log("Sent RPY -> " + packet.pitch + "__" + packet.roll + "___" + packet.yaw);
+              //console.log("Sent PIDs -> " + packet.RollP + "__" + packet.RollI + "___" + packet.RollD);
             }
         });
 		
@@ -886,60 +946,60 @@ for(var i = 0; i < idlist.length; i++) {
                 success: function (data) {
                   /*console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);*/
                   unity.SendMessage("MyObject", "gRoll", data.roll);
-                  unity.SendMessage("MyObject", "gPitch", data.pitch);
-                  unity.SendMessage("MyObject", "gYaw", data.yaw);
+                  unity.SendMessage("MyObject", "gPitch", -data.pitch);
+                  unity.SendMessage("MyObject", "gYaw", -data.yaw);
                   UpdateRollPitchYawSpans(data);
                   UpdateConsole(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
-                  setTimeout(UpdateSimulation, 200);
+                  setTimeout(UpdateSimulation, 1000);
                 }
             });
         } else {
-            setTimeout(UpdateSimulation, 200);
+            setTimeout(UpdateSimulation, 1000);
         }
     };
 
-    setInterval(CheckLock, 500);
+    setInterval(CheckLock, 100);
     
     setTimeout(UpdateSimulation, 200);
 
-    setInterval(UpdateRadians, 500);
+    setInterval(UpdateRadians, 200);
 
     function UpdateConsole(data) {
 	var console = document.getElementById("console")
 	var yawPrint;
 	
 	//if (data.yaw == "") { yawPrint = "No Yaw"}
-	//else { yawPrint = data.yaw + "ï¿½"; }
+	//else { yawPrint = data.yaw + "°"; }
 	
-	if(console) { console.value += " Roll: " + data.roll +'&deg' + " \tPitch: " + data.pitch +'&deg' + " \tYaw: " + data.yaw +'&deg\n'; }
+	if(console) { console.value += " Roll: " + data.roll +'°' + " \tPitch: " + data.pitch +'°' + " \tYaw: " + data.yaw +'°\n'; }
     }
 
     function CheckBoundaries() {
 
-    r = document.getElementById("rA");
-	p = document.getElementById("pA");
-	y = document.getElementById("yA");
-    
-	rV = document.getElementById("rA").value;
-	pV = document.getElementById("pA").value;
-	yV = document.getElementById("yA").value;
-
-	if(rV) {
-		if(rV > 20) { r.value = 20; }
-		if(rV < -20) { r.value = -20; }
-	} else { r.value = 0; }
-
-	if(pV) {
-		if(pV > 20) { p.value = 20; }
-		if(pV < -20) { p.value = -20; }
-	} else { p.value = 0; }
-
-	if(yV) {
-		if(yV > 360) { y.value = 360; }
-		if(yV < -360) { y.value = -360; }
-	} else { y.value = null; }
+		r = document.getElementById("rA");
+		p = document.getElementById("pA");
+		y = document.getElementById("yA");
+		
+		rV = document.getElementById("rA").value;
+		pV = document.getElementById("pA").value;
+		yV = document.getElementById("yA").value;
+	
+		if(rV) {
+			if(rV > 20) { r.value = 20; }
+			if(rV < -20) { r.value = -20; }
+		} else { r.value = null; }
+	
+		if(pV) {
+			if(pV > 20) { p.value = 20; }
+			if(pV < -20) { p.value = -20; }
+		} else { p.value = 0; }
+	
+		if(yV) {
+			if(yV > 360) { y.value = 360; }
+			if(yV < -360) { y.value = -360; }
+		} else { y.value = null; }
 	
     }
 
@@ -973,15 +1033,14 @@ for(var i = 0; i < idlist.length; i++) {
 
 
     function UpdateRollPitchYawSpans(data) {
-        var foo = -1 * data.pitch;
 
 		document.getElementById("RollSpan").innerHTML = data.roll +'&deg';
-		document.getElementById("PitchSpan").innerHTML = foo +'&deg';
+		document.getElementById("PitchSpan").innerHTML = data.pitch +'&deg';
 		
 		var yawPrinter;
 		
 		//if (data.yaw == "") { yawPrint = "No Yaw"}
-		//else { yawPrinter = data.yaw + "ï¿½"; }
+		//else { yawPrinter = data.yaw + "°"; }
 	
 		document.getElementById("YawSpan").innerHTML = data.yaw +'&deg';
     }
