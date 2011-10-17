@@ -21,6 +21,7 @@ public class GuiSimService {
         flight.roll = next.roll;
         flight.pitch = next.pitch;
         flight.yaw = next.yaw;
+        System.out.println(" -- " + flight.roll + " --  ");
         return flight;
     }
 

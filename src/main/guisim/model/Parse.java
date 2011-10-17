@@ -20,6 +20,7 @@ public class Parse {
         return new FromHardware(roll, pitch, yaw);
     }
 
+    //TODO: parse >156 digit
     public short parseToShort(byte b1, byte b2) {
         return (short) ((b1 << 8) | b2);
     }

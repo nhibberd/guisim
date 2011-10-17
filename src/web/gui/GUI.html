@@ -846,15 +846,15 @@ for(var i = 0; i < idlist.length; i++) {
             pitch:  parseInt(pitchV.value,10) ? parseInt(pitchV.value,10) : 0,
             roll:  parseInt(rollV.value,10) ? parseInt(rollV.value,10) : 0,
             yaw: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
-            rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10):-1,
-            rollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :-1,
-            rollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) : -1,
-            pitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):-1,
-            pitchI : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):-1,
-            pitchD : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):-1,
-            yawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):-1,
-            yawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):-1,
-            yawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):-1
+            rollP : parseInt(document.getElementById("RollP").value,10) ? parseInt(document.getElementById("RollP").value,10) :0,
+            rollI : parseInt(document.getElementById("RollI").value,10) ? parseInt(document.getElementById("RollI").value,10) :0,
+            rollD : parseInt(document.getElementById("RollD").value,10) ? parseInt(document.getElementById("RollD").value,10) : 0,
+            pitchP : parseInt(document.getElementById("PitchP").value,10) ? parseInt(document.getElementById("PitchP").value,10):0,
+            pitchI : parseInt(document.getElementById("PitchI").value,10) ? parseInt(document.getElementById("PitchI").value,10):0,
+            pitchD : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):0,
+            yawP : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
+            yawI : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
+            yawD : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
 
 
         }
@@ -892,17 +892,17 @@ for(var i = 0; i < idlist.length; i++) {
                   UpdateConsole(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
-                  setTimeout(UpdateSimulation, 1000);
+                  setTimeout(UpdateSimulation, 200);
                 }
             });
         } else {
-            setTimeout(UpdateSimulation, 1000);
+            setTimeout(UpdateSimulation, 200);
         }
     };
 
     setInterval(CheckLock, 500);
     
-    setTimeout(UpdateSimulation, 1000);
+    setTimeout(UpdateSimulation, 200);
 
     setInterval(UpdateRadians, 500);
 
@@ -913,7 +913,7 @@ for(var i = 0; i < idlist.length; i++) {
 	//if (data.yaw == "") { yawPrint = "No Yaw"}
 	//else { yawPrint = data.yaw + "�"; }
 	
-	if(console) { console.value += " Roll: " + data.roll +'�' + " \tPitch: " + data.pitch +'�' + " \tYaw: " + data.yaw +'�\n'; }
+	if(console) { console.value += " Roll: " + data.roll +'&deg' + " \tPitch: " + data.pitch +'&deg' + " \tYaw: " + data.yaw +'&deg\n'; }
     }
 
     function CheckBoundaries() {
@@ -973,16 +973,17 @@ for(var i = 0; i < idlist.length; i++) {
 
 
     function UpdateRollPitchYawSpans(data) {
+        var foo = -1 * data.pitch;
 
-		document.getElementById("RollSpan").innerHTML = data.roll +'�';
-		document.getElementById("PitchSpan").innerHTML = data.pitch +'�';
+		document.getElementById("RollSpan").innerHTML = data.roll +'&deg';
+		document.getElementById("PitchSpan").innerHTML = foo +'&deg';
 		
 		var yawPrinter;
 		
 		//if (data.yaw == "") { yawPrint = "No Yaw"}
 		//else { yawPrinter = data.yaw + "�"; }
 	
-		document.getElementById("YawSpan").innerHTML = data.yaw +'�';
+		document.getElementById("YawSpan").innerHTML = data.yaw +'&deg';
     }
 
 	function UpdateAH(data) {
