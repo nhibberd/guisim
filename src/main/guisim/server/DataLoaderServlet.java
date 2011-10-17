@@ -2,6 +2,8 @@ package guisim.server;
 
 import com.google.gson.Gson;
 import guisim.json.FakeData;
+import guisim.json.Flight;
+import guisim.model.FromGuiObjects;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -19,7 +21,18 @@ public class DataLoaderServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
-        FakeData inputData = gson.fromJson(reader, FakeData.class);
-        service.store(inputData.data);
+        //FakeData inputData = gson.fromJson(reader, FakeData.class);
+        //service.store(inputData.data);
+        FromGuiObjects data = gson.fromJson(reader, FromGuiObjects.class);
+        service.store(data);
+    }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/json");
+        PrintWriter writer = resp.getWriter();
+        //TODO: read file
+
+        //TODO: write data to zz
+        writer.println("");
     }
 }

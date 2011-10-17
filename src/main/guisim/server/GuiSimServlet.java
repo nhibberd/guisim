@@ -35,7 +35,7 @@ public class GuiSimServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
-        PrintWriter writer = resp.getWriter();
+        //PrintWriter writer = resp.getWriter();
         //Flight flight = gson.fromJson(reader, Flight.class);
         /*FromGui roll = gson.fromJson(reader, FromGui.class);
         FromGui pitch = gson.fromJson(reader, FromGui.class);
