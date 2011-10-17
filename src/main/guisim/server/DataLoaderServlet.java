@@ -21,8 +21,6 @@ public class DataLoaderServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
-        //FakeData inputData = gson.fromJson(reader, FakeData.class);
-        //service.store(inputData.data);
         FromGuiObjects data = gson.fromJson(reader, FromGuiObjects.class);
         service.store(data);
     }
@@ -30,9 +28,9 @@ public class DataLoaderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
         PrintWriter writer = resp.getWriter();
-        //TODO: read file
-
-        //TODO: write data to zz
-        writer.println("");
+        //TODO: read file ?? or use user inputs
+        Flight flight = service.poll();
+        String json = gson.toJson(flight);
+        writer.println(json);
     }
 }
