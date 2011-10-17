@@ -23,6 +23,14 @@ public class GuiSimService {
         return flight;
     }
 
+    public Flight error() {
+        Flight flight = new Flight();
+        flight.roll = -666;
+        flight.pitch = -666;
+        flight.yaw = -666;
+        return flight;
+    }
+
     public void send(FromGuiObjects data, Output output) throws IOException {
         //TODO: fix this
 

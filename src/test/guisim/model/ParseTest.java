@@ -42,6 +42,28 @@ public class ParseTest {
        // checkShortToByte((short) 360, (byte) 0xFE, (byte) 0x97);
     }
 
+    @Test
+    public void parser(){
+        checkParser(one);
+        checkParser(negativeone);
+        checkParser(twenty);
+        checkParser((short) -20);
+        checkParser((short) 255);
+        checkParser((short) 256);
+        checkParser((short) 360);
+    }
+
+    @Test
+    public void parser2(){
+        checkParser2((byte) 0x00,(byte) 0x00,(byte) 0x00,(byte) 0x00);
+        checkParser2((byte) 0x00,(byte) 0x01,(byte) 0x00,(byte) 0x01);
+        checkParser2((byte) 0x00,(byte) 0x14,(byte) 0x00, (byte) 0x14);
+        checkParser2((byte) 0x00,(byte) 0x14,(byte) 0x00, (byte) 0x14);
+        checkParser2((byte) 0x01,(byte) 0x00,(byte) 0x01, (byte) 0x00);
+        checkParser2((byte) 0x01,(byte) 0x68,(byte) 0x01,(byte) 0x68);
+        checkParser2((byte) 0xFF,(byte) 0xFF,(byte) 0xFF,(byte) 0xFF);
+    }
+
     private void checkParseShort(short s, int i, int i1) {
         assertEquals(s, parse.parseToShort((byte) i, (byte) i1));
     }
@@ -53,5 +75,14 @@ public class ParseTest {
 
     private void checkShortToByte(short s, byte b1, byte b2) {
         assertArrayEquals(parse.parseToBytes(s), new byte[]{b1, b2} );
+    }
+
+    private void checkParser(short s) {
+        byte[] z = parse.parseToBytes(s);
+        assertEquals(s, parse.parseToShort( z[0], z[1]));
+    }
+
+    private void checkParser2(byte a,byte b,byte c,byte d) {
+        assertArrayEquals( new byte[] { c, d }, parse.parseToBytes(parse.parseToShort(a,b)));
     }
 }

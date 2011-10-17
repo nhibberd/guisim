@@ -4,7 +4,6 @@ package guisim.server;
 
 import guisim.usb.HardwareOutput;
 import guisim.usb.Output;
-import guisim.usb.Usb;
 import io.mth.foil.j.Foil;
 import io.mth.foil.j.Config;
 import io.mth.foil.j.Configs;
@@ -14,7 +13,6 @@ import io.mth.foil.j.Foils;
 
 
 import gnu.io.*;
-import scala.xml.Null;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +34,6 @@ public class GuiSim {
     public static void main(String[] args) {
         //TODO: comm port search??
         if (args.length > 0) {
-            //if(args[0].equals(args[0])){
             if(args[0].equals("COM3")){
                 SimpleWrite(args);
             }
@@ -66,6 +63,11 @@ public class GuiSim {
         //TODO?
         if (stream != null)
             device.write(stream);
+        else {
+            GuiSimService errorService = new GuiSimService();
+            errorService.error();
+        }
+
 
         Config config = c.compound(
            c.servlet("/guisim", "/*", new GuiSimServlet(device)),
