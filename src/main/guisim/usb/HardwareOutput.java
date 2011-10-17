@@ -9,10 +9,10 @@ import java.io.OutputStream;
 
 public class HardwareOutput implements Output {
 
-    private OutputStream device;
+    private OutputStream device = null;
 
-    public void write(OutputStream asd) {
-        this.device = asd;
+    public void write(OutputStream data) {
+        this.device = data;
     }
 
     public OutputStream get() {

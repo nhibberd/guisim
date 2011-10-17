@@ -7,7 +7,10 @@ import java.io.OutputStream;
 
 public class SyntheticOutput implements Output {
 
-    public OutputStream write(OutputStream device) {
+    public void write(OutputStream device) {
+    }
+
+    public OutputStream get() {
         return null;
     }
 
