@@ -12,7 +12,8 @@ public class HardwareOutput implements Output {
     private OutputStream device = null;
 
     public void write(OutputStream data) {
-        this.device = data;
+        if (data != null)
+            this.device = data;
     }
 
     public OutputStream get() {

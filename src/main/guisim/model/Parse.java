@@ -21,11 +21,14 @@ public class Parse {
 
     public short parseToShort(byte b1, byte b2) {
         return (short) ((b1 << 8) | b2);
+        //return (short) ((b2 << 8) + (b1&0xFF));
     }
 
     public byte[] parseToBytes(short s) {
         byte b1 = (byte) (s >>> 8);
         byte b2 = (byte) (s & 0xFF);
+        //byte b1 = (byte) (s & 0xFF);
+        //byte b2 = (byte) ((s >> 8) & 0xFF);
         return new byte[] { b1, b2 };
     }
 }

@@ -17,11 +17,12 @@ import java.util.concurrent.atomic.AtomicReference;
 public class GuiSimServlet extends HttpServlet {
     private final GuiSimService service = new GuiSimService();
     private final Gson gson = new Gson();
-    private Output device;
-   /* private OutputStream device;
+    //private Output device;
+    private OutputStream device;
 
-    //public GuiSimServlet(OutputStream device) { */
-    public GuiSimServlet(Output output) {
+    //public GuiSimServlet(OutputStream device) {
+    //public GuiSimServlet(Output output) {
+    public GuiSimServlet(OutputStream output) {
         this.device = output;
     }
 
@@ -32,6 +33,7 @@ public class GuiSimServlet extends HttpServlet {
         String json = gson.toJson(flight);
         writer.println(json);
     }
+
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();

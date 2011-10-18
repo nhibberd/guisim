@@ -13,25 +13,30 @@ import java.util.Arrays;
 public class GuiSimService {
     //private final HardwareEvents events = new HardwareEvents();
     private final HardwareEvents events = new HardwareEvents();
+    private final Flight error = new Flight();
 
     public Flight poll() {
-        FromHardware next = events.get();
         Flight flight = new Flight();
-        flight.roll = next.roll;
-        flight.pitch = next.pitch;
-        flight.yaw = next.yaw;
+        if (error.pitch != 666) {
+            FromHardware next = events.get();
+            flight.roll = next.roll;
+            flight.pitch = next.pitch;
+            flight.yaw = next.yaw;
+            return flight;
+        } else if ( error != null) {
+            return error;
+        }
         return flight;
     }
 
-    public Flight error() {
-        Flight flight = new Flight();
-        flight.roll = -666;
-        flight.pitch = -666;
-        flight.yaw = -666;
-        return flight;
+    public void error() {
+        error.roll = 666;
+        error.pitch = 666;
+        error.yaw = 666;
     }
 
-    public void send(FromGuiObjects data, Output output) throws IOException {
+    //public void send(FromGuiObjects data, Output output) throws IOException {
+    public void send(FromGuiObjects data, OutputStream output) throws IOException {
         //TODO: fix this
 
         byte[] outputData = new byte[24];
@@ -40,6 +45,6 @@ public class GuiSimService {
         System.arraycopy( data.yaw.compactParse(),0,outputData,16,8);
 
         System.out.println(Arrays.toString(outputData));
-        output.get().write(outputData);
+        output.write(outputData);
     }
 }

@@ -35,7 +35,7 @@ public class GuiSim {
         //TODO: comm port search??
         if (args.length > 0) {
             if(args[0].equals("COM3")){
-                SimpleWrite(args);
+                //SimpleWrite(args);
             }
         }
 
@@ -55,22 +55,26 @@ public class GuiSim {
         OutputStream stream = null;
         try {
             stream = usb.start();
+            //device.write(stream);   //TODO: NULLPOINTEREXCEPTION
         } catch (NoSuchPortException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         //TODO?
+/*
         if (stream != null)
             device.write(stream);
         else {
-            GuiSimService errorService = new GuiSimService();
-            errorService.error();
+            //GuiSimService errorService = new GuiSimService();
+            //errorService.error();
         }
+*/
 
 
         Config config = c.compound(
-           c.servlet("/guisim", "/*", new GuiSimServlet(device)),
+           //c.servlet("/guisim", "/*", new GuiSimServlet(device)),
+           c.servlet("/guisim", "/*", new GuiSimServlet(stream)),
            c.servlet("/dataloader", "/*", new DataLoaderServlet()),
            c.path("/", "src/web")
         )
