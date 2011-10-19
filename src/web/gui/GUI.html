@@ -164,8 +164,8 @@ function SavePID() {
 commands in degrees within the given ranges:
 	<br /><br />
 		<ul>
-			<li>Roll & Pitch : -20° to 20°</li>
-			<li>Yaw : 0° to 360°</li>
+			<li>Roll & Pitch : -20ï¿½ to 20ï¿½</li>
+			<li>Yaw : 0ï¿½ to 360ï¿½</li>
 		</ul>
 	<br />
 	Any violations of inputs outside the given range will be automatically read as the 
@@ -199,7 +199,7 @@ left to right) mark out 0 degrees, 30 degrees, 60 degrees and 90 degrees.</li>
 	 			<li id="yawDescription" style="margin-bottom:10px;">
 	The Yaw Panel (Heading Indicator) displays the current yaw readings received from the 
 
-hardware model. Each marking represents 10°. The Zero markings corresponds to the line marked on 
+hardware model. Each marking represents 10ï¿½. The Zero markings corresponds to the line marked on 
 
 both the hardware model and the simulated model representation.
 	<br /><br />
@@ -946,7 +946,8 @@ for(var i = 0; i < idlist.length; i++) {
                 dataType: 'json',
                 data: {},
                 success: function (data) {
-                  /*console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);*/
+                  console.log(data);
+                  console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);
                   unity.SendMessage("MyObject", "gRoll", data.roll);
                   unity.SendMessage("MyObject", "gPitch", -data.pitch);
                   unity.SendMessage("MyObject", "gYaw", -data.yaw);
@@ -954,11 +955,11 @@ for(var i = 0; i < idlist.length; i++) {
                   UpdateConsole(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
-                  setTimeout(UpdateSimulation, 1000);
+                  setTimeout(UpdateSimulation, 200);
                 }
             });
         } else {
-            setTimeout(UpdateSimulation, 1000);
+            setTimeout(UpdateSimulation, 200);
         }
     };
 
@@ -973,7 +974,7 @@ for(var i = 0; i < idlist.length; i++) {
 	var yawPrint;
 	
 	//if (data.yaw == "") { yawPrint = "No Yaw"}
-	//else { yawPrint = data.yaw + "°"; }
+	//else { yawPrint = data.yaw + "ï¿½"; }
 	
 	if(console) { console.value += " Roll: " + data.roll +"\u00B0" + " \tPitch: " + data.pitch +"\u00B0" + " \tYaw: " + data.yaw +"\u00B0" + "\n"; }
     }
@@ -1042,7 +1043,7 @@ for(var i = 0; i < idlist.length; i++) {
 		var yawPrinter;
 		
 		//if (data.yaw == "") { yawPrint = "No Yaw"}
-		//else { yawPrinter = data.yaw + "°"; }
+		//else { yawPrinter = data.yaw + "ï¿½"; }
 	
 		document.getElementById("YawSpan").innerHTML = data.yaw +'&deg';
     }
