@@ -29,7 +29,7 @@
 		<!--
 		body {
 			font-family: Helvetica, Verdana, Arial, sans-serif;
-			background-color: white;
+			background-color: #00000F;
 			color: black;
 			text-align: center;
 		}
@@ -164,8 +164,8 @@ function SavePID() {
 commands in degrees within the given ranges:
 	<br /><br />
 		<ul>
-			<li>Roll & Pitch : -20ï¿½ to 20ï¿½</li>
-			<li>Yaw : 0ï¿½ to 360ï¿½</li>
+			<li>Roll & Pitch : -20° to 20°</li>
+			<li>Yaw : 0° to 360°</li>
 		</ul>
 	<br />
 	Any violations of inputs outside the given range will be automatically read as the 
@@ -199,7 +199,7 @@ left to right) mark out 0 degrees, 30 degrees, 60 degrees and 90 degrees.</li>
 	 			<li id="yawDescription" style="margin-bottom:10px;">
 	The Yaw Panel (Heading Indicator) displays the current yaw readings received from the 
 
-hardware model. Each marking represents 10ï¿½. The Zero markings corresponds to the line marked on 
+hardware model. Each marking represents 10°. The Zero markings corresponds to the line marked on 
 
 both the hardware model and the simulated model representation.
 	<br /><br />
@@ -532,7 +532,7 @@ style="position:absolute;top:0px; left: 0%; height: 20px; width: 100%; z-index:1
 <img src="markers.png" />
 </div>
 
-	<div id = "RPYText" style = "position:absolute; top:450px; text-align:left; left:5px; height: 56px; width: 200px; border:1px solid #333333; z-index:100123123121; background-color:white;">
+	<div id = "RPYText" style = "position:absolute; top:450px; text-align:left; left:5px; height: 56px; width: 200px; border:1px solid #333333; z-index:100123123121; background-color:#bebebe;">
 
 <span id="RollText" style ="position:absolute; text-align:left; top:0px; z-index:10000"> Current Roll: &nbsp</span>
 <span id="RollSpan" style ="position:absolute; text-align:right; top:0px; right:0px; z-index:10000"> 0&deg </span>
@@ -559,8 +559,6 @@ background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
 </div>
 
 </div>
-
-<div id="background" style="position:absolute; top:0px; left:0px; width:100%; height:700px; z-index:0; background-color:#00000C;"></div>
 
 </div>
 
@@ -911,7 +909,7 @@ for(var i = 0; i < idlist.length; i++) {
 			D : parseInt(document.getElementById("PitchD").value,10)?parseInt(document.getElementById("PitchD").value,10):0
 		},
 		yaw :{
-			deg: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
+			deg: parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : 0,
 			P : parseInt(document.getElementById("YawP").value,10)?parseInt(document.getElementById("YawP").value,10):0,
 			I : parseInt(document.getElementById("YawI").value,10)?parseInt(document.getElementById("YawI").value,10):0,
 			D : parseInt(document.getElementById("YawD").value,10)?parseInt(document.getElementById("YawD").value,10):0
@@ -933,9 +931,9 @@ for(var i = 0; i < idlist.length; i++) {
         });
 		
 		
-		rollV.value = "";
-		pitchV.value = "";
-		yawV.value = "";
+		//rollV.value = "";
+		//pitchV.value = "";
+		//yawV.value = "";
     };
 
     function UpdateSimulation() {
@@ -946,8 +944,7 @@ for(var i = 0; i < idlist.length; i++) {
                 dataType: 'json',
                 data: {},
                 success: function (data) {
-                  console.log(data);
-                  console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);
+                  /*console.log("Polling -> " + data.roll + "___" + data.pitch + "__" + data.yaw);*/
                   unity.SendMessage("MyObject", "gRoll", data.roll);
                   unity.SendMessage("MyObject", "gPitch", -data.pitch);
                   unity.SendMessage("MyObject", "gYaw", -data.yaw);
@@ -955,11 +952,11 @@ for(var i = 0; i < idlist.length; i++) {
                   UpdateConsole(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
-                  setTimeout(UpdateSimulation, 200);
+                  setTimeout(UpdateSimulation, 1000);
                 }
             });
         } else {
-            setTimeout(UpdateSimulation, 200);
+            setTimeout(UpdateSimulation, 1000);
         }
     };
 
@@ -974,7 +971,7 @@ for(var i = 0; i < idlist.length; i++) {
 	var yawPrint;
 	
 	//if (data.yaw == "") { yawPrint = "No Yaw"}
-	//else { yawPrint = data.yaw + "ï¿½"; }
+	//else { yawPrint = data.yaw + "°"; }
 	
 	if(console) { console.value += " Roll: " + data.roll +"\u00B0" + " \tPitch: " + data.pitch +"\u00B0" + " \tYaw: " + data.yaw +"\u00B0" + "\n"; }
     }
@@ -1043,7 +1040,7 @@ for(var i = 0; i < idlist.length; i++) {
 		var yawPrinter;
 		
 		//if (data.yaw == "") { yawPrint = "No Yaw"}
-		//else { yawPrinter = data.yaw + "ï¿½"; }
+		//else { yawPrinter = data.yaw + "°"; }
 	
 		document.getElementById("YawSpan").innerHTML = data.yaw +'&deg';
     }
@@ -1155,7 +1152,7 @@ function TestNigger() {
 	var packet = {
 		roll : parseInt(sendingRoll,10) ? parseInt(rollV.value,10) : 0,
 		pitch : parseInt(pitchV.value,10) ? parseInt(pitchV.value,10) : 0,	
-		yaw : parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : -1,
+		yaw : parseInt(sendingYaw,10) ? parseInt(sendingYaw,10) : 0,
 	}
 	
  	var unity = GetUnity();

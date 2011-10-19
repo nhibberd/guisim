@@ -1,0 +1,31 @@
+java -classpath GUISIM-20111019.jar;RXTXcomm.jar;foil.jar;gson-1.7.1.jar;jetty-ajp-7.1.6.v20100715.jar;jetty-annotations-7.1.6.v20100715.jar;jetty-client-7.1.6.v20100715.jar;jetty-continuation-7.1.6.v20100715.jar;jetty-deploy-7.1.6.v20100715.jar;jetty-http-7.1.6.v20100715.jar;jetty-io-7.1.6.v20100715.jar;jetty-jmx-7.1.6.v20100715.jar;jetty-jndi-7.1.6.v20100715.jar;jetty-plus-7.1.6.v20100715.jar;jetty-policy-7.1.6.v20100715.jar;jetty-rewrite-7.1.6.v20100715.jar;jetty-security-7.1.6.v20100715.jar;jetty-server-7.1.6.v20100715.jar;jetty-servlet-7.1.6.v20100715.jar;jetty-servlets-7.1.6.v20100715.jar;jetty-util-7.1.6.v20100715.jar;jetty-webapp-7.1.6.v20100715.jar;jetty-websocket-7.1.6.v20100715.jar;jetty-7-.1.6.v20100715.jar;pirate.jar;scala-library.jar;scalaz-core_2.8.0-5.0-sources.jar;scalaz-core_2.8.0-5.0.jar;servlet-api-2.5.jar -Djava.library.path=rxtxSerial.dll guisim.server.GuiSim
+java -classpath GUISIM-20111019.jar;RXTXcomm.jar;foil.jar;gson-1.7.1.jar;jetty-ajp-7.1.6.v20100715.jar;jetty-annotations-7.1.6.v20100715.jar;jetty-client-7.1.6.v20100715.jar;jetty-continuation-7.1.6.v20100715.jar;jetty-deploy-7.1.6.v20100715.jar;jetty-http-7.1.6.v20100715.jar;jetty-io-7.1.6.v20100715.jar;jetty-jmx-7.1.6.v20100715.jar;jetty-jndi-7.1.6.v20100715.jar;jetty-plus-7.1.6.v20100715.jar;jetty-policy-7.1.6.v20100715.jar;jetty-rewrite-7.1.6.v20100715.jar;jetty-security-7.1.6.v20100715.jar;jetty-server-7.1.6.v20100715.jar;jetty-servlet-7.1.6.v20100715.jar;jetty-servlets-7.1.6.v20100715.jar;jetty-util-7.1.6.v20100715.jar;jetty-webapp-7.1.6.v20100715.jar;jetty-websocket-7.1.6.v20100715.jar;jetty-7-.1.6.v20100715.jar;pirate.jar;scala-library.jar;scalaz-core_2.8.0-5.0-sources.jar;scalaz-core_2.8.0-5.0.jar;servlet-api-2.5.jar -Djava.library.path=F:\Work\354\guisim\guisim\dist\lib\ guisim.server.GuiSim
+java -classpath GUISIM-20111019.jar;RXTXcomm.jar;foil.jar;gson-1.7.1.jar;jetty-ajp-7.1.6.v20100715.jar;jetty-annotations-7.1.6.v20100715.jar;jetty-client-7.1.6.v20100715.jar;jetty-continuation-7.1.6.v20100715.jar;jetty-deploy-7.1.6.v20100715.jar;jetty-http-7.1.6.v20100715.jar;jetty-io-7.1.6.v20100715.jar;jetty-jmx-7.1.6.v20100715.jar;jetty-jndi-7.1.6.v20100715.jar;jetty-plus-7.1.6.v20100715.jar;jetty-policy-7.1.6.v20100715.jar;jetty-rewrite-7.1.6.v20100715.jar;jetty-security-7.1.6.v20100715.jar;jetty-server-7.1.6.v20100715.jar;jetty-servlet-7.1.6.v20100715.jar;jetty-servlets-7.1.6.v20100715.jar;jetty-util-7.1.6.v20100715.jar;jetty-webapp-7.1.6.v20100715.jar;jetty-websocket-7.1.6.v20100715.jar;jetty-7-.1.6.v20100715.jar;pirate.jar;scala-library.jar;scalaz-core_2.8.0-5.0-sources.jar;scalaz-core_2.8.0-5.0.jar;servlet-api-2.5.jar -Djava.library.path=%~dp0 guisim.server.GuiSim
+lib\GUISIM.jar;lib\RXTXcomm.jar;lib\foil.jar;lib\gson-1.7.1.jar;lib\jetty-ajp-7.1.6.v20100715.jar;lib\jetty-annotations-7.1.6.v20100715.jar;lib\jetty-client-7.1.6.v20100715.jar;lib\jetty-continuation-7.1.6.v20100715.jar;lib\jetty-deploy-7.1.6.v20100715.jar;lib\jetty-http-7.1.6.v20100715.jar;lib\jetty-io-7.1.6.v20100715.jar;lib\jetty-jmx-7.1.6.v20100715.jar;lib\jetty-jndi-7.1.6.v20100715.jar;lib\jetty-plus-7.1.6.v20100715.jar;lib\jetty-policy-7.1.6.v20100715.jar;lib\jetty-rewrite-7.1.6.v20100715.jar;lib\jetty-security-7.1.6.v20100715.jar;lib\jetty-server-7.1.6.v20100715.jar;lib\jetty-servlet-7.1.6.v20100715.jar;lib\jetty-servlets-7.1.6.v20100715.jar;lib\jetty-util-7.1.6.v20100715.jar;lib\jetty-webapp-7.1.6.v20100715.jar;lib\jetty-websocket-7.1.6.v20100715.jar;lib\jetty-xml-7.1.6.v20100715.jar;lib\pirate.jar;lib\scala-library.jar;lib\scalaz-core_2.8.0-5.0-sources.jar;lib\scalaz-core_2.8.0-5.0.jar;lib\servlet-api-2.5.jar;
+
+%~dp0
+
+java -classpath <classpath> -Djava.library.path=<librarypath> <classname>
+
+F:\Work\354\guisim\guisim\dist\lib
+
+-Djava.library.path=lib/run
+
+
+
+GUISIM-20111019.jar                     jetty-security-7.1.6.v20100715.jar
+RXTXcomm.jar                            jetty-server-7.1.6.v20100715.jar
+foil.jar                                jetty-servlet-7.1.6.v20100715.jar
+gson-1.7.1.jar                          jetty-servlets-7.1.6.v20100715.jar
+jetty-ajp-7.1.6.v20100715.jar           jetty-util-7.1.6.v20100715.jar
+jetty-annotations-7.1.6.v20100715.jar   jetty-webapp-7.1.6.v20100715.jar
+jetty-client-7.1.6.v20100715.jar        jetty-websocket-7.1.6.v20100715.jar
+jetty-continuation-7.1.6.v20100715.jar  jetty-xml-7.1.6.v20100715.jar
+jetty-deploy-7.1.6.v20100715.jar        pirate.jar
+jetty-http-7.1.6.v20100715.jar          rxtxParallel.dll
+jetty-io-7.1.6.v20100715.jar            rxtxSerial.dll
+jetty-jmx-7.1.6.v20100715.jar           scala-library.jar
+jetty-jndi-7.1.6.v20100715.jar          scalaz-core_2.8.0-5.0-sources.jar
+jetty-plus-7.1.6.v20100715.jar          scalaz-core_2.8.0-5.0.jar
+jetty-policy-7.1.6.v20100715.jar        servlet-api-2.5.jar
+jetty-rewrite-7.1.6.v20100715.jar

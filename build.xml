@@ -3,12 +3,13 @@
         Guisim build file.
   </description>
   <!-- set global properties for this build -->
-  <property name="src" location="src"/>
+  <property name="src" location="src/main"/>
   <property name="build" location="build"/>
-
+  <property name="dist"  location="dist"/>
 
   <path id="classpath">
     <fileset dir="lib/run" includes="*.jar"/>
+
   </path>
 
   <target name="init">
@@ -31,9 +32,15 @@
     <copy todir="${dist}/lib">
       <fileset dir="lib/run"/>
     </copy>
-
+    <mkdir dir="${dist}/lib/src/web"/>
+    <copy todir="${dist}/lib/src/web">
+      <fileset dir="src/web/gui"/>
+    </copy>
+    <copy todir="${dist}">
+      <fileset file="guisim.bat"/>
+    </copy>
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+    <jar jarfile="${dist}/lib/GUISIM.jar" basedir="${build}"/>
   </target>
 
   <target name="clean"
