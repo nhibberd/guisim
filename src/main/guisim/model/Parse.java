@@ -22,7 +22,8 @@ public class Parse {
     //TODO: 127deg error
     //TODO: 262deg error
     public short parseToShort(byte b1, byte b2) {
-        return (short) ((b1 << 8) | b2);
+        //return (short) ((b1 << 8) | b2);
+        return (short) ((b1 << 8) | (0xff & b2));
         //return (short) ((b2 << 8) + (b1&0xFF));
     }
 
