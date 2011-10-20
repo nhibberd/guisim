@@ -81,7 +81,7 @@ public class GuiSim {
            //c.servlet("/guisim", "/*", new GuiSimServlet(stream)),
            //c.servlet("/dataloader", "/*", new DataLoaderServlet()),
            c.servlet("/guisim", "/*", foo),
-           c.path("/", "src/web/gui")
+           c.path("/", "src/web")
         )
                 ;
         Foil foil = foils.nu("guisim", 10080, config);
