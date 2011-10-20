@@ -22,15 +22,13 @@ public class DataLoaderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BufferedReader reader = req.getReader();
         FromGuiObjects data = gson.fromJson(reader, FromGuiObjects.class);
-        //TODO: read file ??
-        service.store(data);
+        service.readFile();
+        //service.store(data);
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
         PrintWriter writer = resp.getWriter();
-        //TODO: read file ??
-
         Flight flight = service.poll();
         String json = gson.toJson(flight);
         writer.println(json);

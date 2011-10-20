@@ -14,6 +14,7 @@ import io.mth.foil.j.Foils;
 
 import gnu.io.*;
 
+import javax.servlet.Servlet;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
@@ -55,28 +56,32 @@ public class GuiSim {
         OutputStream stream = null;
         try {
             stream = usb.start();
-            //device.write(stream);   //TODO: NULLPOINTEREXCEPTION
+            //stream = device.start();
         } catch (NoSuchPortException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         //TODO?
-/*
-        if (stream != null)
-            device.write(stream);
-        else {
-            //GuiSimService errorService = new GuiSimService();
-            //errorService.error();
-        }
-*/
 
+        //if (stream != null)
+            //device.start();
+            //device.write(stream);
+
+        Servlet foo;
+        if (stream != null){
+            System.out.println("stream");
+            foo = new GuiSimServlet(stream);
+        } else {
+            System.out.println("dataloader");
+            foo = new DataLoaderServlet();
+        }
 
         Config config = c.compound(
-           //c.servlet("/guisim", "/*", new GuiSimServlet(device)),
-           c.servlet("/guisim", "/*", new GuiSimServlet(stream)),
-           c.servlet("/dataloader", "/*", new DataLoaderServlet()),
-           c.path("/", "src/web")
+           //c.servlet("/guisim", "/*", new GuiSimServlet(stream)),
+           //c.servlet("/dataloader", "/*", new DataLoaderServlet()),
+           c.servlet("/guisim", "/*", foo),
+           c.path("/", "src/web/gui")
         )
                 ;
         Foil foil = foils.nu("guisim", 10080, config);

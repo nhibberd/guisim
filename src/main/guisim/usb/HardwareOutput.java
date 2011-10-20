@@ -8,18 +8,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class HardwareOutput implements Output {
-
-    private OutputStream device = null;
-
-    public void write(OutputStream data) {
-        if (data != null)
-            this.device = data;
-    }
-
-    public OutputStream get() {
-        return device;
-    }
-
     public OutputStream start() throws NoSuchPortException, IOException {
         try
 		{
