@@ -37,12 +37,10 @@
     <copy todir="${dist}/lib/src/web">
       <fileset dir="src/web/gui"/>
     </copy>
-    <!--
     <copy todir="${dist}">
       <fileset file="guisim32.bat"/>
       <fileset file="guisim64.bat"/>
     </copy>
-    -->
     <copy todir="${dist}/lib">
       <fileset file="test.txt"/>
       <fileset file="guisimLIB.bat"/>
