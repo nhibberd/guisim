@@ -15,6 +15,7 @@ public class DataLoaderService {
     private final SyntheticHardwareEvents hardwareEvents = new SyntheticHardwareEvents();
 
     public void readFile(){
+        System.out.println("Dataloader: reading local test file");
         BufferedReader reader = null;
         try {
             System.out.println(System.getProperty("user.dir"));

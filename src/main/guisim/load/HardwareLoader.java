@@ -8,10 +8,9 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 public class HardwareLoader implements Runnable {
-   //private final HardwareEvents hardwareEvents = new HardwareEvents();
    private final HardwareEvents hardwareEvents = new HardwareEvents();
    private final InputStream device;
-   private final byte[] workingBuffer = new byte[6];      //TODO:added check now 8 bytes
+   private final byte[] workingBuffer = new byte[6];
    private int workingLength = 0;
    private final byte[] readBuffer = new byte[6];
    private int readLength = 0;
@@ -43,23 +42,7 @@ public class HardwareLoader implements Runnable {
         System.out.println(Arrays.toString(bytes));
         Parse parser = new Parse();
         short zero = 0;
-        FromHardware event = new FromHardware(zero, zero, zero);
-
-        //FromHardware event = parser.datapointFromHardware(bytes);
-
-
-        //TODO: for testing
-        //short check = parser.parseToShort(bytes[0], bytes[1]);
-        //System.out.println(check);
-        //if (check == -1 ){
-            short roll = parser.parseToShort(bytes[0], bytes[1]);
-            short pitch = parser.parseToShort(bytes[2], bytes[3]);
-            short yaw = parser.parseToShort(bytes[4], bytes[5]);
-            System.out.println(roll);
-            System.out.println(pitch);
-            System.out.println(yaw);
-            event = new FromHardware(roll, pitch, yaw);
-        //}
+        FromHardware event = parser.datapointFromHardware(bytes);
         hardwareEvents.set(event);
     }
 

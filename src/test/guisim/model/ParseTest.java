@@ -42,8 +42,8 @@ public class ParseTest {
         checkShortToByte((short) 1, (byte) 0x00, (byte) 0x01);
         checkShortToByte((short) -1, (byte) 0xff, (byte) 0xff);
         checkShortToByte((short) 20, (byte) 0x00, (byte) 0x14);
+        checkShortToByte((short) -20, (byte) 0xff, (byte) 0xec);
         checkShortToByte((short) 360, (byte) 0x01, (byte) 0x68);
-       // checkShortToByte((short) 360, (byte) 0xFE, (byte) 0x97);
     }
 
     @Test
