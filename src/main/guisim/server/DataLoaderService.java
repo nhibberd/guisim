@@ -13,24 +13,29 @@ import java.util.Arrays;
 
 public class DataLoaderService {
     private final SyntheticHardwareEvents hardwareEvents = new SyntheticHardwareEvents();
+    private boolean done = false;
 
     public void readFile(){
-        System.out.println("Dataloader: reading local test file");
         BufferedReader reader = null;
         try {
-            //System.out.println(System.getProperty("user.dir"));
             reader = new BufferedReader(new FileReader("test.txt"));
             String str;
-            while ((str = reader.readLine()) != null) {
-                //System.out.println(str + "\n");
-                for (String first : str.split(",")){
-                    String[] second = first.trim().split(" ");
-                    short roll = Short.parseShort(second[0]);
-                    short pitch = Short.parseShort(second[1]);
-                    short yaw = Short.parseShort(second[2]);
-                    FromHardware event = new FromHardware(roll, pitch, yaw);
-                    //System.out.println(event.pitch);
-                    hardwareEvents.put(event);
+            if (!done){
+            System.out.println("Dataloader: reading local test file");
+                while ((str = reader.readLine()) != null) {
+                    for (String first : str.split(",")){
+                        String[] second = first.trim().split(" ");
+                        if (!(second[0].equals(""))){
+                            short roll = Short.parseShort(second[0]);
+                            short pitch = Short.parseShort(second[1]);
+                            short yaw = Short.parseShort(second[2]);
+                            FromHardware event = new FromHardware(roll, pitch, yaw);
+                            hardwareEvents.put(event);
+                        } else {
+                            done = true;
+                        }
+
+                    }
                 }
             }
         } catch (FileNotFoundException e) {

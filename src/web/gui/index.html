@@ -168,8 +168,8 @@ function SavePID() {
 commands in degrees within the given ranges:
 	<br /><br />
 		<ul>
-			<li>Roll & Pitch : -20° to 20°</li>
-			<li>Yaw : 0° to 360°</li>
+			<li>Roll & Pitch : -20ï¿½ to 20ï¿½</li>
+			<li>Yaw : 0ï¿½ to 360ï¿½</li>
 		</ul>
 	<br />
 	Any violations of inputs outside the given range will be automatically read as the 
@@ -204,7 +204,7 @@ left to right) mark out 0 degrees, 30 degrees, 60 degrees and 90 degrees.</li>
 	 			<li id="yawDescription" style="margin-bottom:5px; margin-left:-15px;">
 	The Yaw Panel (Heading Indicator) displays the current yaw readings received from the 
 
-hardware model. Each marking represents 10°. The Zero markings corresponds to the line marked on 
+hardware model. Each marking represents 10ï¿½. The Zero markings corresponds to the line marked on 
 
 both the hardware model and the simulated model representation.
 	<br /><br />
@@ -965,11 +965,11 @@ for(var i = 0; i < idlist.length; i++) {
                   UpdateConsole(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
-                  setTimeout(UpdateSimulation, 1000);
+                  setTimeout(UpdateSimulation, 200);
                 }
             });
         } else {
-            setTimeout(UpdateSimulation, 1000);
+            setTimeout(UpdateSimulation, 200);
         }
     };
 
@@ -1048,7 +1048,7 @@ for(var i = 0; i < idlist.length; i++) {
 		var yawPrinter;
 		
 		//if (data.yaw == "") { yawPrint = "No Yaw"}
-		//else { yawPrinter = data.yaw + "°"; }
+		//else { yawPrinter = data.yaw + "ï¿½"; }
 	
 		document.getElementById("YawSpan").innerHTML = data.yaw +'&deg';
     }
