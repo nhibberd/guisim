@@ -18,18 +18,18 @@ public class DataLoaderService {
         System.out.println("Dataloader: reading local test file");
         BufferedReader reader = null;
         try {
-            System.out.println(System.getProperty("user.dir"));
+            //System.out.println(System.getProperty("user.dir"));
             reader = new BufferedReader(new FileReader("test.txt"));
             String str;
             while ((str = reader.readLine()) != null) {
-                System.out.println(str + "\n");
+                //System.out.println(str + "\n");
                 for (String first : str.split(",")){
                     String[] second = first.trim().split(" ");
                     short roll = Short.parseShort(second[0]);
                     short pitch = Short.parseShort(second[1]);
                     short yaw = Short.parseShort(second[2]);
                     FromHardware event = new FromHardware(roll, pitch, yaw);
-                    System.out.println(event.pitch);
+                    //System.out.println(event.pitch);
                     hardwareEvents.put(event);
                 }
             }

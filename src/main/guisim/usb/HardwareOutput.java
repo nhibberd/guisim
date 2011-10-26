@@ -31,7 +31,7 @@ public class HardwareOutput implements Output {
         try{
             if (communicationPort != null) {
                 port = (SerialPort) communicationPort.open("Arduion UNO", 10);
-                System.out.println(".open");
+                //System.out.println(".open");
             }
         } catch(PortInUseException e) {
             //error

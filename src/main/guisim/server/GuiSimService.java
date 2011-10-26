@@ -27,7 +27,7 @@ public class GuiSimService {
         System.arraycopy( data.roll.compactParse(),0,outputData,0,8);
         System.arraycopy( data.pitch.compactParse(),0,outputData,8,8);
         System.arraycopy( data.yaw.compactParse(),0,outputData,16,8);
-        System.out.println(Arrays.toString(outputData));
+        //System.out.println(Arrays.toString(outputData));
         output.write(outputData);
     }
 }

@@ -39,10 +39,11 @@ public class HardwareLoader implements Runnable {
    }
 
     private void process(byte[] bytes) {
-        System.out.println(Arrays.toString(bytes));
+        //System.out.println(Arrays.toString(bytes));
         Parse parser = new Parse();
         short zero = 0;
         FromHardware event = parser.datapointFromHardware(bytes);
+        //System.out.println(event);
         hardwareEvents.set(event);
     }
 
