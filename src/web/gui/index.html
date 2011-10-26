@@ -137,52 +137,57 @@ function SavePID() {
 		<div id = "userManual" name="userManual" 
 		style="position:absolute;top: 40px; left: 1%;border: 2px solid #333333; -moz-border-radius : 10px;border-radius : 10px; height: 1100; width: 98%; z-index:100;background-color:#F2F5A9;">
 		<p>Please Note: The following simulator should be used whilst the screen is maximised to ensure appropriate layouts of functionalities.</p>
+		
+		<p align="left" style="padding-left:20px;">
+		To start hardware and ready the simulator; press the "Ready Simululation" button to unlock 		input controls to show the below diagram. 
+		</p>
 
-	<div id="defaultViewDesciption" style="position:absolute; top:60px; left:1%; border:2px solid #000000; width:98%;">
+	<div id="defaultViewDesciption" style="position:absolute; top:80px; left:1%; border:2px solid #000000; width:98%;">
 	
 		<img src="manual1.png" width="100%" height="450"/>
 	
 	</div>
 		
-	<!--<div id="pidViewDesciption" style="position:absolute; top:600px; left:0%; width:99%;">
+	<div id="pidViewDesciption" style="position:absolute; top:600px; left:0%; width:99%;">
 	
 		<img src="manual2.png" width="100%"/ height="414">
 	
-	</div>-->
-	
-	
-<!--	<div id="defaultViewDesciption" style="position:absolute; top:60px; left:0%; border:2px solid 
+	</div>
 
-#000000; background-color:#FFFF00; width:48%; padding-right:15px; text-align:justify; font-size:12px">
+	<!--
+	<div id="defaultViewDesciption" style="position:absolute; top:80px; left:1px; border:2px solid 
+
+#000000; background-color:#FFFF00; width:48%; padding-right:5px; text-align:justify; font-size:11px">
 			<ol>
-	 			<li id="tabDescription" style="margin-bottom:5px;">
+	 			<li id="tabDescription" style="margin-bottom:5px; margin-left:-15px;">
 	Tab panel to navigate between Degree Inputs and PID Inputs</li>
 	
-	 			<li id="degreeDescription" style="margin-bottom:5px;">
-	By default; the Degree Panel is displayed on initial start-up. Users are to input the 
+	 			<li id="degreeDescription" style="margin-bottom:5px; margin-left:-15px;">
+	By default; the Degree Panel is displayed on simulator ready. Users are to input the 
 
 commands in degrees within the given ranges:
 	<br /><br />
 		<ul>
-			<li>Roll & Pitch : -20ï¿½ to 20ï¿½</li>
-			<li>Yaw : 0ï¿½ to 360ï¿½</li>
+			<li>Roll & Pitch : -20° to 20°</li>
+			<li>Yaw : 0° to 360°</li>
 		</ul>
 	<br />
 	Any violations of inputs outside the given range will be automatically read as the 
 
 maximum or minimum depending on whether the violation is above or below zero respectivily. 
 
-Letters and unnecessary symbols are also prohibited. Exceptions to symbols are the negative and 
+Letters and unnecessary symbols are also prohibited. Exceptions to symbols is the negative symbol (roll and pitch only). If no values are entered; boxes are considered degrees of zero(0).
 
-decimal notations.</li>
+<p>Roll and Yaw are coupled as a command. Entering values in either degree box will disable the capability to enter a value in the other. No Exceptions. If values are not entered in both box; roll will not be considered and a yaw value of zero(0) will be sent to hardware.</p>
+</li>
 	
-	 			<li id="defaultPIDDescription" style="margin-bottom:10px;">
+	 			<li id="defaultPIDDescription" style="margin-bottom:5px; margin-left:-15px;">
 	Buttons used to save and restore the PID values calibrated by the user.</li>
 	
-	 			<li id="buttonDescription" style="margin-bottom:10px;">
+	 			<li id="buttonDescription" style="margin-bottom:5px; margin-left:-15px;">
 	Button used to transmit the inputs caommands towards the hardware.</li>
 	
-	 			<li id="ahDescription" style="margin-bottom:10px;">
+	 			<li id="ahDescription" style="margin-bottom:5px; margin-left:-15px;">
 	The Artificial Horizon (or Attitude Indicator) is an instrument commonly found within 
 
 air-crafts which allows pilots to identify the orientation of the aircraft relative to the 
@@ -196,10 +201,10 @@ decrease) in pitch when reading from the center. The lines bordering the Artific
 (when read from 
 left to right) mark out 0 degrees, 30 degrees, 60 degrees and 90 degrees.</li>
 
-	 			<li id="yawDescription" style="margin-bottom:10px;">
+	 			<li id="yawDescription" style="margin-bottom:5px; margin-left:-15px;">
 	The Yaw Panel (Heading Indicator) displays the current yaw readings received from the 
 
-hardware model. Each marking represents 10ï¿½. The Zero markings corresponds to the line marked on 
+hardware model. Each marking represents 10°. The Zero markings corresponds to the line marked on 
 
 both the hardware model and the simulated model representation.
 	<br /><br />
@@ -208,13 +213,13 @@ both the hardware model and the simulated model representation.
 
 negative yaw reading.</li>
 	
-	 			<li id="rpyDescription" style="margin-bottom:10px;">
+	 			<li id="rpyDescription" style="margin-bottom:5px; margin-left:-15px;">
 	Text output display the current readings from the hardware model</li>
 	
-	 			<li id="textDescription" style="margin-bottom:10px;">
+	 			<li id="textDescription" style="margin-bottom:5px; margin-left:-15px;">
 	Text area will display all previous readings that came from the hardware.</li>
 	
-	 			<li id="modelDescription" style="margin-bottom:10px;">
+	 			<li id="modelDescription" style="margin-bottom:5px; margin-left:-15px;">
 	The 3D model is autonomous in it's movement, replicating the actual hardware's movement 
 
 in relation to roll, pitch and yaw. The 3D model offers three camera views; Isometric, Side and 
@@ -227,31 +232,31 @@ left mouse button and moving the mouse.</li>
 	
 			</ol>
 	</div>
-			
-	<div style="position:absolute; top:60px; left:50%;">
+
+	<div style="position:absolute; top:80px; left:49%;">
 		<img src="defaultView.png" height=516; width=100%; border="1"/>
-	</div>-->
-	
+	</div>
+
 		<div id="pidPanelImage" style="position:absolute; top:650px; left:10%; width:389px;">
 			<img src="PIDpanel.png" width="266" height="389" />
 		</div>
 	
-		<div id="pidDesciption" style="position:absolute; top:770px; right:1%; border:2px solid #000000; background-color:#FFFF00; width:50%; padding-right:15px; text-align:justify; font-size:12px;">
+		<div id="pidDesciption" style="position:absolute; top:770px; right:1%; border:2px solid #000000; background-color:#FFFF00; width:50%; padding-right:15px; text-align:justify; font-size:11px;">
 		
 			<ol start="10">
-				<li id="pidDescription" style="margin-bottom:10px;">
+				<li id="pidDescription" style="margin-bottom:5px;">
 				PID Panel is navigated to via the tab button described at section 2. Button is labelled "PID". Panel is divided into 3 separated sections; Roll, Pitch and Yaw from top to bottom. Each section contains a further 3 separate text boxes to enter P, I and D values from left to right.
 				<br /><br />
 				
 				Values of either P, I or D should try to be entered within the ranges of :
 				<ul>
-					<li> X to Y</li>
+					<li> 0 to 100</li>
 				</ul>
 				</li>
 			</ol>
 	
 		</div>
-		
+		-->
 </div>
 </div>
 
@@ -329,7 +334,7 @@ background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
                     || (event.keyCode==8) || (event.keyCode==9)
                     || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) || (event.keyCode==189) )"  size="2" id='rA'; style ="position:absolute;  top:35pt; left:10%;  font-size:15px;" />
-    	<input type="text" size="2" id='radRoll'; disabled='disabled'; style ="position:absolute; top:35pt; left:40%; font-size:15px;" />
+    	<input type="text" size="2" id='radRoll'; disabled='disabled'; style ="position:absolute; width:100px; top:35pt; left:40%; font-size:15px;" />
 	</div>
 
 	<div id = "PitchWindow" name="Pitch"
@@ -342,7 +347,7 @@ background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
                     || (event.keyCode==8) || (event.keyCode==9)
                     || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) || (event.keyCode==189) )" size="2" id='pA';  style ="position:absolute;  top:35pt; left:10%;  font-size:15px;" />
-	<input type="text" disabled='disabled' size="2" id='radPitch'; style ="position:absolute;  top:35pt; left:40%;  font-size:15px;" />
+	<input type="text" disabled='disabled' size="2" id='radPitch'; style ="position:absolute; width:100px;  top:35pt; left:40%;  font-size:15px;" />
 	</div>
 
 	<div id = "YawWindow" name="Yaw"
@@ -355,7 +360,7 @@ background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
                     || (event.keyCode==8) || (event.keyCode==9)
                     || (event.keyCode>34 && event.keyCode<40)
                     || (event.keyCode==46) )" size="2" id='yA';  style ="position:absolute;  top:35pt; left:10%;  font-size:15px;" />
-	<input type="text" disabled='disabled' size="2" id='radYaw'; style ="position:absolute;  top:35pt; left:40%;  font-size:15px;" />
+	<input type="text" disabled='disabled' size="2" id='radYaw'; style ="position:absolute; width:100px;  top:35pt; left:40%;  font-size:15px;" />
 	</div>
 </div>
 
@@ -482,7 +487,9 @@ style="position:absolute;bottom:70px; left: 10px;border: 2px solid #333333; -moz
 <div id = "Sim" name="Sim"
 style="position:absolute;bottom:10px; left: 10px;border: 2px solid #333333; -moz-border-radius : 10px; border-radius : 10px; height: 40px; width:250px; z-index:100;background-color:rgba(0,0,0,0.3);">
 <button type="button" style="position:absolute;top:7px; left: 80px;" onClick=SendAngles();>Send Angles</button>
+<!--
 <button type="button" style="position:absolute;top:7px; left: 0px;" onClick=TestNigger();>Test</button>
+-->
 </div>
 
 </div>
@@ -567,7 +574,7 @@ background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */">
 <style type="text/css">
 
 #wholeSim{
-width:990px;
+width:805px;
 position:absolute;
 left:50%;
 margin-left:-496px;
@@ -807,6 +814,12 @@ for(var i = 0; i < idlist.length; i++) {
 
             }
         });
+		
+	setInterval(CheckLock, 100);
+    
+    setTimeout(UpdateSimulation, 200);
+
+    setInterval(UpdateRadians, 200);
 	}
 
 	//Use this function to add text to the console output window
@@ -952,29 +965,23 @@ for(var i = 0; i < idlist.length; i++) {
                   UpdateConsole(data);
                   UpdateAH(data);
                   UpdateYawIndicator(data);
-                  setTimeout(UpdateSimulation, 200);
+                  setTimeout(UpdateSimulation, 1000);
                 }
             });
         } else {
-            setTimeout(UpdateSimulation, 200);
+            setTimeout(UpdateSimulation, 1000);
         }
     };
 
-    setInterval(CheckLock, 100);
-    
-    setTimeout(UpdateSimulation, 200);
 
-    setInterval(UpdateRadians, 200);
 
-    function UpdateConsole(data) {
-	var console = document.getElementById("console")
-	var yawPrint;
-	
-	//if (data.yaw == "") { yawPrint = "No Yaw"}
-	//else { yawPrint = data.yaw + "ï¿½"; }
-	
-	if(console) { console.value += " Roll: " + data.roll +"\u00B0" + " \tPitch: " + data.pitch +"\u00B0" + " \tYaw: " + data.yaw +"\u00B0" + "\n"; }
-    }
+    function UpdateConsole(data) { 	
+		var consoleArea = document.getElementById("console") 	
+		var yawPrint; 	 	
+		if(consoleArea) { 
+			consoleArea.value = " Roll: " + data.roll +"\u00B0" + " \tPitch: " + data.pitch +"\u00B0" + " \tYaw: " + data.yaw +"\u00B0" + "\n" + consoleArea.value 
+		}     
+	}
 
     function CheckBoundaries() {
 
@@ -1021,13 +1028,14 @@ for(var i = 0; i < idlist.length; i++) {
 	yr.value = "";
 
 	if(r.value) {
-		rr.value = Math.round(r.value * 0.0174) + " rads";
+		
+		rr.value = Math.round((r.value*0.0174532925)*Math.pow(10,2))/Math.pow(10,2) + " rad";
 	}
 	if(p.value) {
-		pr.value = Math.round(p.value * 0.0174) + " rads";
+		pr.value = Math.round((p.value*0.0174532925)*Math.pow(10,2))/Math.pow(10,2) + " rad";
 	}
 	if(y.value) {
-		yr.value = Math.round(y.value * 0.0174) + " rads";
+		yr.value = Math.round((y.value*0.0174532925)*Math.pow(10,2))/Math.pow(10,2) + " rad";
 	}
     }
 
@@ -1040,7 +1048,7 @@ for(var i = 0; i < idlist.length; i++) {
 		var yawPrinter;
 		
 		//if (data.yaw == "") { yawPrint = "No Yaw"}
-		//else { yawPrinter = data.yaw + "ï¿½"; }
+		//else { yawPrinter = data.yaw + "°"; }
 	
 		document.getElementById("YawSpan").innerHTML = data.yaw +'&deg';
     }

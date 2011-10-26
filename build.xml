@@ -37,14 +37,16 @@
     <copy todir="${dist}/lib/src/web">
       <fileset dir="src/web/gui"/>
     </copy>
-    <copy todir="${dist}">
+    <copy todir="${dist}/lib">
       <fileset file="guisim32.bat"/>
       <fileset file="guisim64.bat"/>
+      <fileset file="test.txt"/>
     </copy>
+    <!--
     <copy todir="${dist}/lib">
       <fileset file="test.txt"/>
       <fileset file="guisimLIB.bat"/>
-    </copy>
+    </copy> -->
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
     <jar jarfile="${dist}/lib/GUISIM.jar" basedir="${build}"/>
   </target>
